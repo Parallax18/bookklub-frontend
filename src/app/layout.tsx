@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import ProviderRoot from "./providers";
 
-const inter = Inter({ subsets: ["latin"] });
+const dm_sans = DM_Sans({ subsets: ["latin"] });
 
 // export const metadata: Metadata = {
 //   title: 'Create Next App',
@@ -15,13 +16,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   keywords: ["nextjs", "nextjs13", "next13", "pwa", "next-pwa"],
   themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#fff" }],
-  authors: [
-    { name: "Parallax18" },
-    // {
-    //   name: "Rajesh Prajapati",
-    //   url: "https://www.linkedin.com/in/raazeshp96/",
-    // },
-  ],
+  authors: [{ name: "Parallax18" }],
   viewport:
     "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
   icons: [
@@ -37,7 +32,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={dm_sans.className}>
+        <ProviderRoot>{children}</ProviderRoot>
+      </body>
     </html>
   );
 }
