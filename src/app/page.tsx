@@ -41,7 +41,14 @@ export default function Home() {
             <label style={{ display: "block" }}>User name</label>
             <input
               name={"username"}
-              style={{ padding: "1rem", width: "100%" }}
+              style={{
+                padding: "1rem",
+                backgroundColor: "#1B1C1E",
+                outline: "none",
+                borderRadius: "6px",
+                border: "1px solid #475367",
+                width: "100%",
+              }}
               onChange={(e) => setForm({ ...form, username: e.target.value })}
             />
           </div>
@@ -49,7 +56,14 @@ export default function Home() {
             <label style={{ display: "block" }}>Password</label>
             <input
               name={"password"}
-              style={{ padding: "1rem", width: "100%" }}
+              style={{
+                padding: "1rem",
+                backgroundColor: "#1B1C1E",
+                outline: "none",
+                borderRadius: "6px",
+                border: "1px solid #475367",
+                width: "100%",
+              }}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
           </div>
