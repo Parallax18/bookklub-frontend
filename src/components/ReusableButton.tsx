@@ -1,0 +1,25 @@
+import { Box, Flex } from "@chakra-ui/react";
+interface ButtonProps {
+  Type: string;
+  // You can add more props like placeholder, type, etc. as needed
+}
+const ReusableButton: React.FC<ButtonProps> = ({ Type }) => {
+  return (
+    <Box
+      as="button"
+      lineHeight="1.2"
+      transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+      border="1px"
+      p="16px"
+      borderRadius="8px"
+      fontSize="16px"
+      fontWeight="semibold"
+      bg="#ACCDBD"
+      color="#FFFFFF"
+    >
+      {Type}
+    </Box>
+  );
+};
+
+export default ReusableButton;

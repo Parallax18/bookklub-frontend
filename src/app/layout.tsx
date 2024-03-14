@@ -32,20 +32,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-<<<<<<< HEAD
       <body
         style={{
-          backgroundImage: `url('/Template.png')`,
-          backgroundSize: "contain",
-          backgroundPosition: "center",
+          backgroundImage: 'url("/Template.png")',
+          width: "100%",
         }}
-        className={inter.className}
+        className={dm_sans.className}
       >
-        {children}
-=======
-      <body className={dm_sans.className}>
         <ProviderRoot>{children}</ProviderRoot>
->>>>>>> f7b6777b4f0193b87fc6303bf1637a04c2bff01b
       </body>
     </html>
   );
