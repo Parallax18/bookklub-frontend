@@ -1,10 +1,10 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import styles from "./page.module.css";
 import { HttpClient } from "@/api-services/http";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { Box, Button } from "@chakra-ui/react";
 
 export default function Home() {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -24,50 +24,8 @@ export default function Home() {
     console.log({ data });
   };
   return (
-    <main className={styles.main}>
-      <div className={styles.center}>
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            gap: "1rem",
-            display: "flex",
-            flexDirection: "column",
-            width: "25rem",
-            zIndex: 1000,
-          }}
-        >
-          <h2>Login</h2>
-          <div>
-            <label style={{ display: "block" }}>User name</label>
-            <input
-              name={"username"}
-              style={{ padding: "1rem", width: "100%" }}
-              onChange={(e) => setForm({ ...form, username: e.target.value })}
-            />
-          </div>
-          <div>
-            <label style={{ display: "block" }}>Password</label>
-            <input
-              name={"password"}
-              style={{ padding: "1rem", width: "100%" }}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
-            />
-          </div>
-          <button
-            type="submit"
-            style={{
-              background: "teal",
-              padding: "1rem",
-              width: "100%",
-              outline: "none",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            Submit
-          </button>
-        </form>
-      </div>
-    </main>
+    <Box w="100vw" h="100vh">
+      Is this what they mean by foot patrol?
+    </Box>
   );
 }

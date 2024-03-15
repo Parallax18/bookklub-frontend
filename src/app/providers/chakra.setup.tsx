@@ -1,8 +1,8 @@
 "use client";
 
 import { ChakraProvider, Box } from "@chakra-ui/react";
-import { Global } from "@emotion/react";
 import React, { useEffect } from "react";
+import { theme } from "../../theme/index";
 
 interface ChakraSetupProps {
   children: React.ReactNode;
@@ -10,8 +10,8 @@ interface ChakraSetupProps {
 
 const ChakraSetup = ({ children }: ChakraSetupProps) => {
   return (
-    <ChakraProvider>
-      <Box bg={"dark-bg"}>{children}</Box>
+    <ChakraProvider theme={theme}>
+      <Box bg="button-color-active">{children}</Box>
     </ChakraProvider>
   );
 };
