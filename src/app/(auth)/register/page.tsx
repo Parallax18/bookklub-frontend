@@ -67,9 +67,9 @@ const Login = () => {
                 zIndex: 1000,
               }}
             >
-              <Heading fontSize="32px">Login to your account</Heading>
+              <Heading fontSize="32px">Create an account</Heading>
               <Text color="#98A2B3" fontSize="14px">
-                Fill in details to login
+                Let’s get you started with bookklub! 🤩
               </Text>
               <Box
                 lineHeight="1.2"
@@ -89,7 +89,7 @@ const Login = () => {
                 color="#FFFFFF"
               >
                 <FcGoogle size={25} />
-                <Text>Continue with Google</Text>
+                <Text>Sign in with Google</Text>
               </Box>
               <Box
                 lineHeight="1.2"
@@ -109,7 +109,7 @@ const Login = () => {
                 color="#FFFFFF"
               >
                 <FaApple size={25} />
-                <Text>Continue with Apple</Text>
+                <Text>Sign in with Apple</Text>
               </Box>
               <Box textAlign="center" fontSize="14px" color="#98A2B3" py="10px">
                 <Text>OR</Text>
@@ -129,6 +129,15 @@ const Login = () => {
                   placeholder="password"
                   onChange={handlePasswordChange}
                 />
+                {form.password !== "" ? (
+                  <Box fontSize="14px" color="#98A2B3">
+                    <Text>8-15 characters</Text>
+                    <Text>At least 1 uppercase letter</Text>
+                    <Text>At least 1 lowercase letter</Text>
+                    <Text>At least 1 number</Text>
+                    <Text>At least 1 special character</Text>
+                  </Box>
+                ) : null}
                 <div
                   onClick={() => setShowPassword((prevState) => !prevState)}
                   style={{ cursor: "pointer" }}
@@ -156,12 +165,7 @@ const Login = () => {
                   )}
                 </div>
               </Box>
-              <Box display="flex" justifyContent="end">
-                <Text color="#FAF9F6" fontSize="14px" cursor="pointer">
-                  Forgot password?
-                </Text>
-              </Box>
-              <ReusableButton Type="Login" />
+              <ReusableButton Type="Create account" />
               <Box
                 color="#98A2B3"
                 display="flex"
@@ -169,10 +173,10 @@ const Login = () => {
                 py="10px"
                 gap="5px"
               >
-                Don’t have an account?
+                Already have an account?
                 <Text fontWeight="700" color="#ffffff">
                   {" "}
-                  Create one here
+                  Login here
                 </Text>
               </Box>
             </form>

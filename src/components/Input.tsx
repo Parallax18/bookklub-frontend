@@ -28,6 +28,7 @@ const ReusableInput: React.FC<InputProps> = ({
         {label}
       </Text>
       <Input
+        style={{ caretColor: "#90BCA7" }}
         type={type}
         p="25px"
         backgroundColor="#1B1C1E"
@@ -39,7 +40,7 @@ const ReusableInput: React.FC<InputProps> = ({
         borderColor="#475367"
         _focus={{
           boxShadow: "none",
-          border: "1px solid #475367",
+          border: "1px solid #90BCA7",
         }}
         onChange={handleChange}
         placeholder={placeholder}
