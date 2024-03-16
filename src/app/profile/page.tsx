@@ -1,7 +1,12 @@
+import { Box } from "@chakra-ui/react";
 import React from "react";
 
 const page = () => {
-  return <div>This is the profile page</div>;
+  return (
+    <Box bg="primary.400" color="white">
+      Text is life
+    </Box>
+  );
 };
 
 export default page;
