@@ -32,7 +32,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={dm_sans.className}>
+      <body
+        style={{
+          backgroundImage: 'url("/Template.png")',
+          width: "100%",
+        }}
+        className={dm_sans.className}
+      >
         <ProviderRoot>{children}</ProviderRoot>
       </body>
     </html>

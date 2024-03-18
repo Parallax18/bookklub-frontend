@@ -212,7 +212,7 @@ export default function Chat() {
               <button
                 type="submit"
                 style={{
-                  background: "teal",
+                  backgroundColor: "#ACCDBD",
                   // padding: "1rem",
                   width: "20%",
                   outline: "none",
