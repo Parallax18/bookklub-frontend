@@ -48,20 +48,13 @@ const Login = () => {
     return useMutation({
       mutationKey: ["login"],
       mutationFn: async (loginData: FormValues) => {
-        const response = await HttpClient.post({
-          url: "/login",
-          data: loginData,
-        });
+        // const response = await HttpClient.post({
+        //   url: "/login",
+        //   data: loginData,
+        // });
         router.push("/verify_email");
-        return response;
+        // return response;
       },
-      // onSuccess: (data) => {
-      //   console.log({ data });
-      //   router.push("/chat");
-      // },
-      // onError: (error) => {
-      //   console.log({ error });
-      // },
     });
   };
 
@@ -232,7 +225,8 @@ const Login = () => {
                         Forgot password?
                       </Text>
                     </Box>
-                    <ReusableButton Type="Login" />
+
+                    <Button>Login</Button>
                     <Box
                       color="#98A2B3"
                       display="flex"
