@@ -43,18 +43,18 @@ export default function RootLayout({
   // }, [router]);
   const queryClient = new QueryClient();
   return (
-    <QueryClientProvider client={queryClient}>
-      <html lang="en">
-        <body
-          style={{
-            backgroundImage: 'url("/Template.png")',
-            width: "100%",
-          }}
-          className={dm_sans.className}
-        >
-          <ProviderRoot>{children}</ProviderRoot>
-        </body>
-      </html>
-    </QueryClientProvider>
+    <html lang="en">
+      <body
+        style={{
+          backgroundImage: 'url("/Template.png")',
+          width: "100%",
+          minHeight: "100vh",
+          backgroundColor: "#121212",
+        }}
+        className={dm_sans.className}
+      >
+        <ProviderRoot>{children}</ProviderRoot>
+      </body>
+    </html>
   );
 }
