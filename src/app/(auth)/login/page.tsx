@@ -2,7 +2,7 @@
 import { HttpClient } from "@/api-services/http";
 import ReusableInput from "@/components/Input";
 import ReusableButton from "@/components/ReusableButton";
-import { Box, Heading, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
@@ -161,7 +161,8 @@ const Login = () => {
                   Forgot password?
                 </Text>
               </Box>
-              <ReusableButton Type="Login" />
+
+              <Button>Login</Button>
               <Box
                 color="#98A2B3"
                 display="flex"
@@ -170,8 +171,12 @@ const Login = () => {
                 gap="5px"
               >
                 Don’t have an account?
-                <Text fontWeight="700" color="#ffffff">
-                  {" "}
+                <Text
+                  cursor={"pointer"}
+                  onClick={() => router.push("/register")}
+                  fontWeight="700"
+                  color="shade.white"
+                >
                   Create one here
                 </Text>
               </Box>

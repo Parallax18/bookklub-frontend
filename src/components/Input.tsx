@@ -28,19 +28,20 @@ const ReusableInput: React.FC<InputProps> = ({
         {label}
       </Text>
       <Input
-        style={{ caretColor: "#90BCA7" }}
+        style={{ caretColor: "primary.200" }}
         type={type}
         p="25px"
-        backgroundColor="#1B1C1E"
+        backgroundColor="shade.black"
         fontSize="14px"
         focusBorderColor="transparent"
         _placeholder={{
-          color: "#98A2B3",
+          color: "grey.400",
         }}
-        borderColor="#475367"
+        borderColor="grey.600"
         _focus={{
           boxShadow: "none",
-          border: "1px solid #90BCA7",
+          borderColor: "primary.200",
+          border: "1px solid primary.200",
         }}
         onChange={handleChange}
         placeholder={placeholder}

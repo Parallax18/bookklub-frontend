@@ -2,12 +2,13 @@
 import { HttpClient } from "@/api-services/http";
 import ReusableInput from "@/components/Input";
 import ReusableButton from "@/components/ReusableButton";
-import { Box, Heading, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
+import Link from "next/link";
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
@@ -165,7 +166,7 @@ const Login = () => {
                   )}
                 </div>
               </Box>
-              <ReusableButton Type="Create account" />
+              <Button>Create Account</Button>
               <Box
                 color="#98A2B3"
                 display="flex"
@@ -174,8 +175,12 @@ const Login = () => {
                 gap="5px"
               >
                 Already have an account?
-                <Text fontWeight="700" color="#ffffff">
-                  {" "}
+                <Text
+                  cursor={"pointer"}
+                  onClick={() => router.push("/login")}
+                  fontWeight="700"
+                  color="shade.white"
+                >
                   Login here
                 </Text>
               </Box>

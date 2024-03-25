@@ -36,6 +36,8 @@ export default function RootLayout({
         style={{
           backgroundImage: 'url("/Template.png")',
           width: "100%",
+          minHeight: "100vh",
+          backgroundColor: "#121212",
         }}
         className={dm_sans.className}
       >

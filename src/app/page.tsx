@@ -1,10 +1,17 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Button } from "@chakra-ui/react";
+import { Button, Center, VStack } from "@chakra-ui/react";
 
 export default function Home() {
   const router = useRouter();
 
-  return <Button onClick={() => router.push("/register")}>Go to Signup</Button>;
+  return (
+    <VStack my="20%">
+      <Button onClick={() => router.push("/register")}>Go to Signup</Button>
+      <Button isLoading={true} onClick={() => router.push("/register")}>
+        This is an example
+      </Button>
+    </VStack>
+  );
 }
