@@ -2,37 +2,42 @@
 
 import React from "react";
 import { Box, Input, Text } from "@chakra-ui/react";
+import { Field } from "formik";
 interface InputProps {
   label: string;
   value: string;
   placeholder: string;
   type: string;
-  onChange: (value: string) => void;
+  // onChange: (value: string) => void;
+  name: string;
   // You can add more props like placeholder, type, etc. as needed
 }
 
 const ReusableInput: React.FC<InputProps> = ({
   label,
   value,
-  onChange,
+  // onChange,
   placeholder,
   type,
+  name,
 }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value);
-  };
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   onChange(e.target.value);
+  // };
 
   return (
     <div style={{ color: "#FAF9F6", paddingBottom: "10px" }}>
       <Text fontSize="14px" fontWeight={500} mb="5px">
         {label}
       </Text>
-      <Input
+      <Field
+        as={Input}
         style={{ caretColor: "#90BCA7" }}
         type={type}
         p="25px"
         backgroundColor="#1B1C1E"
         fontSize="14px"
+        _hover={{ borderColor: "#90BCA7" }}
         focusBorderColor="transparent"
         _placeholder={{
           color: "#98A2B3",
@@ -42,9 +47,10 @@ const ReusableInput: React.FC<InputProps> = ({
           boxShadow: "none",
           border: "1px solid #90BCA7",
         }}
-        onChange={handleChange}
+        // onChange={handleChange}
         placeholder={placeholder}
         value={value}
+        name={name}
       />
     </div>
   );
