@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 /* @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap") */
 
 html,
@@ -15,5 +16,42 @@ body {
   padding: 0;
   margin: 0;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+.PhoneInputInput {
+  padding: 14px;
+  border: 1px solid #475367;
+  background-color: #1b1c1e;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.PhoneInputCountry {
+  border: 1px solid #475367;
+  margin: 0;
+  width: 18%;
+  background-color: #1b1c1e;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.PhoneInputCountry::before {
+  outline-color: transparent !important;
+}
+.PhoneInputCountry::after {
+  outline-color: transparent !important;
+}
+.PhoneInputCountryIconImg {
+  border-radius: 100%;
+  height: 25px !important;
+  width: 25px !important;
+  object-fit: cover;
+}
+.PhoneInputCountryIcon {
+  height: 25px !important;
+  width: 25px !important;
+  position: relative;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
