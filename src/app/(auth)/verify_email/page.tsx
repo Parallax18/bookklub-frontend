@@ -48,7 +48,7 @@ const VerifyEmail = () => {
               display: "flex",
               justifyContent: "space-between",
               flexDirection: "column",
-              width: "25rem",
+              maxWidth: "400px",
               flexGrow: "1",
             }}
           >
@@ -79,9 +79,10 @@ const VerifyEmail = () => {
                       border="1px solid #475367"
                       borderRadius="6px"
                       fontSize="17px"
+                      display="flex"
                       fontWeight="700"
-                      p="17px"
                       height="50px"
+                      maxWidth="50px"
                       focusBorderColor="transparent"
                       _focus={{
                         border: "1px solid #90BCA7",

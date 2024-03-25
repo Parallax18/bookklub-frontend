@@ -6,7 +6,9 @@ import { HttpClient } from "@/api-services/http";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { DM_Sans } from "next/font/google";
+import { Metadata } from "next";
 const dmSans = DM_Sans({ subsets: ["latin"] });
+
 export default function Home() {
   const [form, setForm] = useState({ email: "", password: "" });
   const router = useRouter();
