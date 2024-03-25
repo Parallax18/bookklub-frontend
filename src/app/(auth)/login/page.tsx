@@ -130,7 +130,7 @@ const Login = () => {
                     }}
                   >
                     <Heading fontSize="32px">Login to your account</Heading>
-                    <Text color="#98A2B3" fontSize="14px">
+                    <Text color="grey.400" fontSize="14px">
                       Fill in details to login 🤩
                     </Text>
                     <Box
