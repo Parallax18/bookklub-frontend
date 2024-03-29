@@ -18,40 +18,14 @@ interface FormValues {
   password: string;
 }
 
-const Login = () => {
-  // const handleSubmit = (e: FormEvent) => {
-  //   e.preventDefault();
-  //   const data = HttpClient.post({ url: "/login", data: form }).then((res) => {
-  //     console.log({ res });
-  //     // @ts-ignore
-  //     Cookies.set("bbk", res?.accessToken);
-  //     // @ts-ignore
-  //     Cookies.set("bbkuser", res?.id);
-  //     router.push("/chat");
-  //     return res;
-  //   });
-
-  //   console.log({ data });
-  // };
-
-  // const handleEmailChange = (value: string) => {
-  //   setForm({ ...form, email: value });
-  // };
-  // const handlePasswordChange = (value: string) => {
-  //   setForm({ ...form, password: value });
-  // };
-  // const showPassword
+const Register = () => {
   const validationSchema = Yup.object().shape({
-    // name: Yup.string().required('Name is required'),
     email: Yup.string().email("Invalid email").required("Email is required"),
     password: Yup.string()
       .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
-    // confirmPassword: Yup.string()
-    //   .oneOf([Yup.ref('password')], 'Passwords must match')
-    //   .required('Confirm Password is required'),
   });
-  // const [form, setForm] = useState({ email: "", password: "" });
+
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
@@ -59,12 +33,7 @@ const Login = () => {
     return useMutation({
       mutationKey: ["register"],
       mutationFn: async (loginData: FormValues) => {
-        // const response = await HttpClient.post({
-        //   url: "/register",
-        //   data: loginData,
-        // });
         router.push("/verify_email");
-        // return response;
       },
     });
   };
@@ -87,22 +56,12 @@ const Login = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            paddingTop: "0",
-            minHeight: "100vh",
-            paddingLeft: "5%",
-            paddingRight: "5%",
             color: "white",
           }}
         >
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "start",
               position: "relative",
-              padding: "4rem 0",
             }}
           >
             <Formik
@@ -111,7 +70,7 @@ const Login = () => {
               onSubmit={handleSubmit}
             >
               {({ values }) => (
-                <Box width={{ base: "100%", sm: "25rem" }}>
+                <Box>
                   <Form
                     style={{
                       gap: "1rem",
@@ -121,7 +80,7 @@ const Login = () => {
                     }}
                   >
                     <Heading fontSize="32px">Create an account</Heading>
-                    <Text color="#98A2B3" fontSize="14px">
+                    <Text color="grey.400" fontSize="14px">
                       Let’s get you started with bookklub! 🤩
                     </Text>
                     <Box
@@ -137,8 +96,8 @@ const Login = () => {
                       borderRadius="8px"
                       fontSize="16px"
                       fontWeight="700"
-                      borderColor="#475367"
-                      bg="#1B1C1E"
+                      borderColor="grey.600"
+                      bg="shade.black"
                       color="#FFFFFF"
                     >
                       <FcGoogle size={25} />
@@ -157,28 +116,29 @@ const Login = () => {
                       borderRadius="8px"
                       fontSize="16px"
                       fontWeight="700"
-                      borderColor="#475367"
-                      bg="#1B1C1E"
+                      borderColor="grey.600"
+                      bg="shade.black"
                       color="#FFFFFF"
                     >
                       <FaApple size={25} />
                       <Text>Sign up with Apple</Text>
                     </Box>
-                    <Box
-                      textAlign="center"
-                      fontSize="14px"
-                      color="#98A2B3"
-                      py="10px"
-                    >
-                      <Text>OR</Text>
+                    <Box textAlign="center" py="10px">
+                      <Text
+                        color={"grey.400"}
+                        fontWeight={400}
+                        lineHeight={"145%"}
+                        fontStyle={"normal"}
+                        fontSize={"0.875rem"}
+                      >
+                        OR
+                      </Text>
                     </Box>
                     <ReusableInput
                       label="Email"
                       value={values.email}
                       placeholder="johndoe@abc.com"
-                      type="email"
                       name="email"
-                      // onChange={handleChange(values.email)}
                     />
                     <Box position="relative">
                       <ReusableInput
@@ -200,7 +160,7 @@ const Login = () => {
                             size={20}
                             style={{
                               position: "absolute",
-                              color: "#98A2B3",
+                              color: "grey.400",
                               top: "42",
                               right: "20",
                             }}
@@ -210,7 +170,7 @@ const Login = () => {
                             size={20}
                             style={{
                               position: "absolute",
-                              color: "#98A2B3",
+                              color: "grey.400",
                               top: "42",
                               right: "20",
                             }}
@@ -220,7 +180,7 @@ const Login = () => {
                     </Box>
                     <Button type="submit">Create account</Button>
                     <Box
-                      color="#98A2B3"
+                      color="grey.400"
                       display="flex"
                       justifyContent="center"
                       py="10px"
@@ -242,4 +202,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

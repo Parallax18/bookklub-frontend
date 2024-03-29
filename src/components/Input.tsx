@@ -1,32 +1,25 @@
 // Input.tsx
 
 import React from "react";
-import { Box, Input, Text } from "@chakra-ui/react";
-import { Field } from "formik";
+import { Box, FormErrorMessage, Input, Text } from "@chakra-ui/react";
+import { ErrorMessage, Field } from "formik";
 interface InputProps {
   label: string;
   value: string;
   placeholder: string;
-  type: string;
-  // onChange: (value: string) => void;
+  type?: string;
   name: string;
-  // You can add more props like placeholder, type, etc. as needed
 }
 
 const ReusableInput: React.FC<InputProps> = ({
   label,
   value,
-  // onChange,
   placeholder,
   type,
   name,
 }) => {
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   onChange(e.target.value);
-  // };
-
   return (
-    <div style={{ color: "#FAF9F6", paddingBottom: "10px" }}>
+    <div style={{ color: "shade.white", paddingBottom: "10px" }}>
       <Text fontSize="14px" fontWeight={500} mb="5px">
         {label}
       </Text>
@@ -53,6 +46,7 @@ const ReusableInput: React.FC<InputProps> = ({
         value={value}
         name={name}
       />
+      <ErrorMessage className="error-message" name={name} />
     </div>
   );
 };

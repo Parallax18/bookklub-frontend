@@ -1,6 +1,14 @@
 "use client";
 import ReusableButton from "@/components/ReusableButton";
-import { Box, Heading, Input, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Input,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 const VerifyEmail = () => {
@@ -29,17 +37,11 @@ const VerifyEmail = () => {
   return (
     <>
       <Stack>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            paddingTop: "100px",
-            paddingBottom: "100px",
-            minHeight: "100vh",
-            color: "white",
-          }}
+        <Flex
+          flexDir={"column"}
+          justifyContent={"center"}
+          color={"shade.white"}
+          height={"95vh"}
         >
           <form
             // onSubmit={handleSubmit}
@@ -48,20 +50,13 @@ const VerifyEmail = () => {
               display: "flex",
               justifyContent: "space-between",
               flexDirection: "column",
-              maxWidth: "400px",
+              width: "full",
               flexGrow: "1",
             }}
           >
-            <Box
-              style={{
-                gap: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                zIndex: 1000,
-              }}
-            >
+            <Box display={"flex"} flexDir={"column"} gap={"1rem"}>
               <Heading fontSize="32px">Email verification</Heading>
-              <Text color="#98A2B3" fontSize="14px">
+              <Text color="grey.400" fontSize="14px">
                 A 6-digit code has been sent to your email johndoe@abc.com.
                 Enter the code to verify email.
               </Text>
@@ -75,8 +70,9 @@ const VerifyEmail = () => {
                 {otp.map((value, index) => (
                   <div key={index} className="flex items-center justify-center">
                     <Input
-                      backgroundColor="#1B1C1E"
-                      border="1px solid #475367"
+                      backgroundColor="shade.black"
+                      border="1px solid grey.600"
+                      borderColor={"grey.600"}
                       borderRadius="6px"
                       fontSize="17px"
                       display="flex"
@@ -85,7 +81,7 @@ const VerifyEmail = () => {
                       maxWidth="50px"
                       focusBorderColor="transparent"
                       _focus={{
-                        border: "1px solid #90BCA7",
+                        border: "1px solid primary.200",
                       }}
                       type="number"
                       value={otp[index]}
@@ -99,7 +95,7 @@ const VerifyEmail = () => {
                 ))}
               </div>
               <Box
-                color="#98A2B3"
+                color="grey.400"
                 display="flex"
                 justifyContent="center"
                 py="10px"
@@ -115,28 +111,9 @@ const VerifyEmail = () => {
                 Open email
               </Text>
             </Box>
-            <Box
-              as="button"
-              lineHeight="1.2"
-              transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-              border="1px"
-              borderColor="transparent"
-              p="16px"
-              borderRadius="8px"
-              fontSize="16px"
-              fontWeight="semibold"
-              bg={
-                otp.some((value) => value === "") || otp.length !== 6
-                  ? "#ACCDBD"
-                  : "#599B7B"
-              }
-              color="#FFFFFF"
-              disabled={otp.some((value) => value === "") || otp.length !== 6}
-            >
-              Verify and continue
-            </Box>
+            <Button type="submit">Verify and continue</Button>
           </form>
-        </div>
+        </Flex>
       </Stack>
     </>
   );

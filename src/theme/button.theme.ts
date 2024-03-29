@@ -6,17 +6,17 @@ export const Button = {
     p: "16px",
     borderRadius: "8px",
     fontSize: "16px",
-    fontWeight: "semibold",
+    fontWeight: "700",
     bg: "primary.400",
     color: "shade.white",
   },
 
   _disabled: {
-    bg: "#ACCDBD",
+    bg: "primary.100",
   },
 
   _loading: {
-    bg: "#ACCDBD",
+    bg: "primary.100",
   },
 
   variants: {

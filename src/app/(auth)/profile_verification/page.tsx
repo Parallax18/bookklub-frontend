@@ -104,7 +104,7 @@ const ProfileVerification = () => {
                     }}
                   >
                     <Heading fontSize="32px">Profile setup</Heading>
-                    <Text color="#98A2B3" fontSize="14px">
+                    <Text color="grey.400" fontSize="14px">
                       Let’s get you properly setup. This would be quick.
                     </Text>
                     <ReusableInput
@@ -169,7 +169,7 @@ const ProfileVerification = () => {
               }}
             >
               <Heading fontSize="32px">Profile setup</Heading>
-              <Text color="#98A2B3" fontSize="14px">
+              <Text color="grey.400" fontSize="14px">
                 Let’s get you properly setup. This would be quick.
               </Text>
               <ReusableInput
