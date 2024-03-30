@@ -9,14 +9,22 @@ export const Button = {
     fontWeight: "700",
     bg: "primary.400",
     color: "shade.white",
-  },
-
-  _disabled: {
-    bg: "primary.100",
-  },
-
-  _loading: {
-    bg: "primary.100",
+    _disabled: {
+      opacity: 1,
+      bg: "primary.100",
+      _hover: {
+        opacity: "1",
+        bg: "primary.100",
+      },
+    },
+    _loading: {
+      opacity: 1,
+      bg: "primary.100",
+      _hover: {
+        opacity: "1",
+        bg: "primary.100",
+      },
+    },
   },
 
   variants: {

@@ -16,7 +16,7 @@ const ChakraSetup = ({ children }: ChakraSetupProps) => {
   return (
     <ChakraProvider theme={theme}>
       <Center className={dm_sans.className}>
-        <Box width={["100%", "25%"]} p={"1rem"} height={"max-content"}>
+        <Box width={["100%", "25%"]} p={"1rem"} minH={"max-content"}>
           {children}
         </Box>
       </Center>

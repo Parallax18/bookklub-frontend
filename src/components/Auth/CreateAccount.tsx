@@ -138,7 +138,9 @@ const CreateAccount = ({
               )}
             </div>
           </Box>
-          <Button type="submit">Create account</Button>
+          <Button type="submit" isDisabled={!formik.isValid}>
+            Create account
+          </Button>
           <Box
             color="grey.400"
             display="flex"

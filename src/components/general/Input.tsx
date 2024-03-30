@@ -19,7 +19,7 @@ const ReusableInput: React.FC<InputProps> = ({
   name,
 }) => {
   return (
-    <Stack spacing={"0.25rem"} style={{ color: "shade.white" }}>
+    <Stack spacing={"0.25rem"} style={{ color: "#FAF9F6" }}>
       <Text fontSize="14px" fontWeight={500}>
         {label}
       </Text>
@@ -54,7 +54,7 @@ const ReusableInput: React.FC<InputProps> = ({
             {err}
           </Text>
         )}
-        name={"otp"}
+        name={name}
       />
     </Stack>
   );
