@@ -1,6 +1,6 @@
 'use client';
 
-import AuthPagesFooterComponent from '@/components/AuthPagesFooterComponent';
+import AuthPagesFooterComponent from '@/components/general/AuthPagesFooterComponent';
 
 export default function newListing() {
   return (
