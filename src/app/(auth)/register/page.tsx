@@ -1,42 +1,51 @@
 "use client";
 import { Box, Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 
 import CreateAccount from "@/components/Auth/CreateAccount";
 import VerifyEmail from "@/components/Auth/VerifyEmail";
 
 import ProfileSetup from "@/components/Auth/ProfileSetup";
 
-enum REGISTRATION_STEPS {
+export enum REGISTRATION_STEPS {
   CREATE_ACCOUNT,
   VERIFY_EMAIL,
   PROFILE_SETUP,
 }
 
 const Register = () => {
-  const [step, setStep] = useState(REGISTRATION_STEPS.CREATE_ACCOUNT);
+  const [step, setStep] = useState<{
+    view: REGISTRATION_STEPS;
+    data?: unknown;
+  }>({ view: REGISTRATION_STEPS.CREATE_ACCOUNT });
   return (
     <>
       <Stack h={"full"}>
         <Flex>
-          <Text color={"shade.white"}>{step + 1}</Text>
+          <Text color={"shade.white"}>{step.view + 1}</Text>
           <Text color={"grey.400"}>
             /{Object.keys(REGISTRATION_STEPS).length / 2}
           </Text>
         </Flex>
 
-        {step === REGISTRATION_STEPS.CREATE_ACCOUNT && (
+        {step.view === REGISTRATION_STEPS.CREATE_ACCOUNT && (
           <CreateAccount
-            onNext={() => setStep(REGISTRATION_STEPS.VERIFY_EMAIL)}
+            onNext={(token) =>
+              setStep({
+                view: REGISTRATION_STEPS.VERIFY_EMAIL,
+                data: { token },
+              })
+            }
           />
         )}
-        {step === REGISTRATION_STEPS.VERIFY_EMAIL && (
+        {step.view === REGISTRATION_STEPS.VERIFY_EMAIL && (
           <VerifyEmail
-            onNext={() => setStep(REGISTRATION_STEPS.PROFILE_SETUP)}
+            data={step.data}
+            onNext={() => setStep({ view: REGISTRATION_STEPS.PROFILE_SETUP })}
           />
         )}
-        {step === REGISTRATION_STEPS.PROFILE_SETUP && <ProfileSetup />}
+        {step.view === REGISTRATION_STEPS.PROFILE_SETUP && <ProfileSetup />}
       </Stack>
     </>
   );

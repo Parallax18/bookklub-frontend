@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         style={{
-          backgroundImage: 'url("/Template.png")',
+          backgroundImage: 'url("/template.png")',
           width: "100%",
           minHeight: "100vh",
           backgroundColor: "#121212",

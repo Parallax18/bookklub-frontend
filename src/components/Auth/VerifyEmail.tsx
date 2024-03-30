@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 import {
   Box,
   Button,
@@ -16,9 +16,12 @@ import * as Yup from "yup";
 
 const VerifyEmail = ({
   onNext,
+  data,
 }: {
-  onNext: Dispatch<SetStateAction<number>>;
+  onNext?: Dispatch<SetStateAction<number>>;
+  data: { token: string };
 }) => {
+  useEffect(() => console.log({ data }), [data]);
   const formik = useFormik({
     initialValues: { otp: "" },
     validationSchema: Yup.object().shape({
@@ -51,7 +54,9 @@ const VerifyEmail = ({
           }}
         >
           <Box display={"flex"} flexDir={"column"} gap={"1rem"}>
-            <Heading fontSize="32px">Email verification</Heading>
+            <Heading fontSize="32px" color={"shade.white"}>
+              Email verification
+            </Heading>
             <Text color="grey.400" fontSize="14px">
               A 6-digit code has been sent to your email johndoe@abc.com. Enter
               the code to verify email.
@@ -133,7 +138,9 @@ const VerifyEmail = ({
               Open email
             </Text>
           </Box>
-          <Button type="submit">Verify and continue</Button>
+          <Button isDisabled={!formik.isValid} type="submit">
+            Verify and continue
+          </Button>
         </form>
       </FormikProvider>
     </Flex>

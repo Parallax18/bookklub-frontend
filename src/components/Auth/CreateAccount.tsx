@@ -7,12 +7,15 @@ import ReusableInput from "../general/Input";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import Link from "next/link";
 import * as Yup from "yup";
+import { useRequestOtp } from "@/api-services/auth";
 
 const CreateAccount = ({
   onNext,
 }: {
   onNext: Dispatch<SetStateAction<number>>;
 }) => {
+  const { mutate: requestOtp, isPending } = useRequestOtp();
+
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: Yup.object().shape({
@@ -23,8 +26,9 @@ const CreateAccount = ({
     }),
     onSubmit: (val) => {
       console.log({ val });
-      //   @ts-expect-error --
-      onNext();
+
+      // @ts-expect-error - -
+      requestOtp(val, { onSuccess: (res) => onNext(res.token) });
     },
   });
 
@@ -41,7 +45,9 @@ const CreateAccount = ({
           }}
         >
           <Stack spacing={"0.5rem"}>
-            <Heading fontSize="32px">Create an account</Heading>
+            <Heading fontSize="32px" color={"shade.white"}>
+              Create an account
+            </Heading>
             <Text color="grey.400" fontSize="14px">
               Let’s get you started with bookklub! 🤩
             </Text>
@@ -138,7 +144,11 @@ const CreateAccount = ({
               )}
             </div>
           </Box>
-          <Button type="submit" isDisabled={!formik.isValid}>
+          <Button
+            type="submit"
+            isLoading={isPending}
+            isDisabled={!formik.isValid || isPending}
+          >
             Create account
           </Button>
           <Box
