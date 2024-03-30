@@ -86,7 +86,7 @@ const CreateAccount = ({
             <FaApple size={25} />
             <Text>Sign up with Apple</Text>
           </Box>
-          <Box textAlign="center" py="10px">
+          <Box textAlign="center">
             <Text
               color={"grey.400"}
               fontWeight={400}
