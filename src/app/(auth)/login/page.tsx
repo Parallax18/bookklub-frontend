@@ -1,7 +1,7 @@
 "use client";
 import { HttpClient } from "@/api-services/http";
-import ReusableInput from "@/components/Input";
-import ReusableButton from "@/components/ReusableButton";
+import ReusableInput from "@/components/general/Input";
+import ReusableButton from "@/components/general/ReusableButton";
 import { Box, Button, Heading, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
@@ -134,7 +134,7 @@ const Login = () => {
                       <FaApple size={25} />
                       <Text>Continue with Apple</Text>
                     </Box>
-                    <Box textAlign="center" py="10px">
+                    <Box textAlign="center">
                       <Text
                         color={"grey.400"}
                         fontWeight={400}

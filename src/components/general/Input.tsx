@@ -1,7 +1,7 @@
 // Input.tsx
 
 import React from "react";
-import { Box, FormErrorMessage, Input, Text } from "@chakra-ui/react";
+import { Box, FormErrorMessage, Input, Stack, Text } from "@chakra-ui/react";
 import { ErrorMessage, Field } from "formik";
 interface InputProps {
   label: string;
@@ -19,8 +19,8 @@ const ReusableInput: React.FC<InputProps> = ({
   name,
 }) => {
   return (
-    <div style={{ color: "shade.white", paddingBottom: "10px" }}>
-      <Text fontSize="14px" fontWeight={500} mb="5px">
+    <Stack spacing={"0.25rem"} style={{ color: "#FAF9F6" }}>
+      <Text fontSize="14px" fontWeight={500}>
         {label}
       </Text>
       <Field
@@ -28,6 +28,7 @@ const ReusableInput: React.FC<InputProps> = ({
         style={{ caretColor: "#90BCA7" }}
         type={type}
         p="25px"
+        height={"3.5rem"}
         backgroundColor="shade.black"
         fontSize="14px"
         _hover={{ borderColor: "#90BCA7" }}
@@ -46,8 +47,16 @@ const ReusableInput: React.FC<InputProps> = ({
         value={value}
         name={name}
       />
-      <ErrorMessage className="error-message" name={name} />
-    </div>
+      <ErrorMessage
+        component={Text}
+        render={(err) => (
+          <Text color={"error.200"} fontSize={"xs"}>
+            {err}
+          </Text>
+        )}
+        name={name}
+      />
+    </Stack>
   );
 };
 
