@@ -7,7 +7,17 @@ import BellIcon from '../icons/BellIcon';
 import ChatIcon from '../icons/ChatIcon';
 export default function AuthPagesFooterComponent() {
   return (
-    <Flex>
+    <Flex
+      style={{
+        position: 'fixed',
+        inset: 'auto 0 0',
+        maxWidth: '426px',
+        margin: 'auto',
+        borderRadius: '8px 8px 0 0',
+      }}
+      px={'16px'}
+      background={'shade.black'}
+    >
       <AuthPagesFooterIcon text="Home" route="#">
         <HomeIcon />
       </AuthPagesFooterIcon>

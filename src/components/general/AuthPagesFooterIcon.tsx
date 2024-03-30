@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Flex, Text, Link } from '@chakra-ui/react';
+import { Flex, Text, Link, Box } from '@chakra-ui/react';
 const AuthPagesFooterIcon = ({
   children,
   text,
@@ -18,9 +18,22 @@ const AuthPagesFooterIcon = ({
     }}
     href={route}
   >
-    <Flex direction={'column'} align={'center'}>
+    <Box
+      style={{
+        margin: 'auto',
+        width: '12px',
+        height: '4px',
+        borderRadius: '4px',
+        translate: '-1px 0',
+      }}
+      background={active ? 'primary.400' : 'transparent'}
+    ></Box>
+
+    <Flex direction={'column'} align={'center'} p={'8px'}>
       {children}
-      <Text fontSize={'xs'}>{text}</Text>
+      <Text fontSize={'xs'} mt={'4px'}>
+        {text}
+      </Text>
     </Flex>
   </Link>
 );
