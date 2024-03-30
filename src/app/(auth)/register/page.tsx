@@ -8,7 +8,7 @@ import VerifyEmail from "@/components/Auth/VerifyEmail";
 
 import ProfileSetup from "@/components/Auth/ProfileSetup";
 
-export enum REGISTRATION_STEPS {
+enum REGISTRATION_STEPS {
   CREATE_ACCOUNT,
   VERIFY_EMAIL,
   PROFILE_SETUP,
@@ -41,7 +41,7 @@ const Register = () => {
         )}
         {step.view === REGISTRATION_STEPS.VERIFY_EMAIL && (
           <VerifyEmail
-            data={step.data}
+            data={step.data as { token: string }}
             onNext={() => setStep({ view: REGISTRATION_STEPS.PROFILE_SETUP })}
           />
         )}
