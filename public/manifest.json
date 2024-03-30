@@ -3,6 +3,7 @@
   "short_name": "Bookklub",
   "theme_color": "#121212",
   "background_color": "#121212",
+  "background_image": "Template.png",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
@@ -64,5 +65,5 @@
       "purpose": "maskable any"
     }
   ],
-  "splash_pages": null
+  "splash_pages": "Template.png"
 }
