@@ -57,5 +57,70 @@ body {
 }
 
 .error-message {
-  color: #e26e6a;
+  color: #e26e6a !important;
+  font-size: "xs";
+}
+
+/* Phone number input styles  */
+.phone_input {
+  background: #1b1c1e !important;
+  border: 1px solid #475367 !important;
+  height: 3.5rem !important;
+  border-radius: 0 0.34rem 0.34rem 0 !important;
+  width: 100% !important;
+  padding: 1rem 0.75rem !important;
+  border-left: none !important;
+}
+
+.phone_container_class {
+  display: flex !important;
+  flex-direction: row-reverse !important;
+  border: none !important;
+  width: 100% !important;
+}
+.phone_country_button {
+  background: #1b1c1e !important;
+  border: 1px solid #475367 !important;
+  border-radius: 0.34rem 0 0 0.34rem !important;
+  position: relative !important;
+  width: 100px !important;
+}
+.phone_country_button:hover {
+  background: #1b1c1e !important;
+}
+
+.phone_country_button > .selected-flag {
+  background: #1b1c1e !important;
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  border-radius: 0.34rem 0 0 0.34rem !important;
+}
+
+.country.highlight {
+  background: #29303b !important;
+}
+
+.phone_country_dropdown {
+  border: 1px solid #1b1c1e !important;
+  background: #1b1c1e !important;
+  border-radius: 0.34rem !important;
+  padding: 0 16px !important;
+}
+
+.phone_search_class {
+  display: flex !important;
+  align-items: center !important;
+  background: #1b1c1e !important;
+}
+.phone_search_class-emoji {
+  display: none !important;
+}
+.phone_search_class > input {
+  background: #1b1c1e !important;
+  border: 1px solid #475367 !important;
+  height: 1rem !important;
+  border-radius: 0.34rem !important;
+  width: 100% !important;
+  padding: 16px !important;
 }
