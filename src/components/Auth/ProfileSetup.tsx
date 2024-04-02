@@ -1,16 +1,4 @@
-import {
-  Box,
-  Button,
-  Heading,
-  HStack,
-  Input,
-  Modal,
-  ModalBody,
-  ModalContent,
-  Stack,
-  Text,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Button, Heading, HStack, Stack, Text } from "@chakra-ui/react";
 import { FormikProvider, useFormik } from "formik";
 import React from "react";
 import ReusableInput from "../general/Input";
@@ -24,6 +12,7 @@ import {
   useGetAllStates,
 } from "@/api-services/country-list";
 import CheckedIcon from "../icons/CheckedIcon";
+import { useRegister } from "@/api-services/auth";
 
 const avatars = [
   "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/lighting.jpeg?alt=media&token=43c434cf-19a3-404d-bf02-41453b4fbc1b",
@@ -32,33 +21,43 @@ const avatars = [
   "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/flashy.jpeg?alt=media&token=5ee8efcc-ef77-4c06-b19d-10d7c2499bd5",
 ];
 
-const ProfileSetup = () => {
+const ProfileSetup = ({
+  token,
+  email,
+  password,
+}: {
+  token: string;
+  email: string;
+  password: string;
+}) => {
   const { data: countries } = useGetAllCountries();
   const { data: states } = useGetAllStates();
+  const { mutate: register, isPending } = useRegister();
   const formik = useFormik({
     initialValues: {
       username: "",
       mobile: "",
       address: "",
-      country: "",
-      state: "",
+      country: "Nigeria",
+      state: "Niger",
       avatar: "",
     },
     validationSchema: yup.object().shape({
       username: yup.string().required("Enter your username"),
       mobile: yup.string().required("Enter your mobile number"),
       address: yup.string().required("Enter an address"),
-      country: yup.string().required("Select a country"),
-      state: yup.string().required("Select a state"),
+      country: yup.string().notRequired(),
+      state: yup.string().notRequired(),
       avatar: yup.string().required("Select an avatar"),
     }),
     onSubmit: (val) => {
-      console.log({ val });
+      register({ ...val, email, password, token });
     },
   });
   return (
     <FormikProvider value={formik}>
       <form
+        onSubmit={formik.handleSubmit}
         style={{
           gap: "1rem",
           display: "flex",
@@ -185,7 +184,10 @@ const ProfileSetup = () => {
             </HStack>
           </Stack>
         </Stack>
-        <Button isDisabled={!formik.isValid}>Complete Setup</Button>
+        {/* <Button isDisabled={!formik.isValid}>Complete Setup</Button> */}
+        <Button type="submit" isLoading={isPending}>
+          Complete Setup
+        </Button>
       </form>
     </FormikProvider>
   );

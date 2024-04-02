@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { ErrorMessage, FormikProvider, useFormik } from "formik";
 import * as Yup from "yup";
+import { useConfirmOtp } from "@/api-services/auth";
 
 const VerifyEmail = ({
   onNext,
@@ -21,7 +22,8 @@ const VerifyEmail = ({
   onNext?: Dispatch<SetStateAction<number>>;
   data: { token: string };
 }) => {
-  useEffect(() => console.log({ data }), [data]);
+  const { mutate: confirmOtp, isPending } = useConfirmOtp();
+
   const formik = useFormik({
     initialValues: { otp: "" },
     validationSchema: Yup.object().shape({
@@ -29,9 +31,16 @@ const VerifyEmail = ({
         .required("OTP is required")
         .min(6, "Must be 6 characters"),
     }),
-    onSubmit: () => {
-      //   @ts-expect-error --
-      onNext();
+    onSubmit: (val) => {
+      confirmOtp(
+        { otp: val.otp, token: data.token },
+        {
+          onSuccess: () => {
+            //   @ts-expect-error --
+            onNext();
+          },
+        }
+      );
     },
   });
   return (
@@ -138,7 +147,11 @@ const VerifyEmail = ({
               Open email
             </Text>
           </Box>
-          <Button isDisabled={!formik.isValid} type="submit">
+          <Button
+            isDisabled={!formik.isValid || isPending}
+            isLoading={isPending}
+            type="submit"
+          >
             Verify and continue
           </Button>
         </form>

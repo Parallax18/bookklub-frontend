@@ -12,7 +12,7 @@ import { useRequestOtp } from "@/api-services/auth";
 const CreateAccount = ({
   onNext,
 }: {
-  onNext: Dispatch<SetStateAction<number>>;
+  onNext: (arg: Record<string, string>) => void;
 }) => {
   const { mutate: requestOtp, isPending } = useRequestOtp();
 
@@ -27,8 +27,9 @@ const CreateAccount = ({
     onSubmit: (val) => {
       console.log({ val });
 
-      // @ts-expect-error - -
-      requestOtp(val, { onSuccess: (res) => onNext(res.token) });
+      requestOtp(val, {
+        onSuccess: (res) => onNext({ token: res.token, ...val }),
+      });
     },
   });
 
