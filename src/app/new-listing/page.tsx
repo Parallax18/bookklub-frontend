@@ -2,12 +2,12 @@
 
 import AuthPagesFooterComponent from '@/components/general/AuthPagesFooterComponent';
 import BookListingHeader from '@/components/BookListing/BookListingHeader';
-import { Flex, Box } from '@chakra-ui/react';
+import BookListingContent from '@/components/BookListing/BooklistingContent';
 
 export default function newListing() {
   return (
     <main>
-      <BookListingHeader />
+      <BookListingContent></BookListingContent>
       <AuthPagesFooterComponent></AuthPagesFooterComponent>
     </main>
   );

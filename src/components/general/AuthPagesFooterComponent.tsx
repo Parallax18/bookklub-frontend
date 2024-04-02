@@ -1,3 +1,4 @@
+'use client';
 import { Flex, Spacer, Box } from '@chakra-ui/react';
 import AuthPagesFooterIcon from './AuthPagesFooterIcon';
 import HomeIcon from '../icons/HomeIcon';
