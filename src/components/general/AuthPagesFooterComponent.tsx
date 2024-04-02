@@ -30,7 +30,11 @@ export default function AuthPagesFooterComponent() {
       <AuthPagesFooterIcon
         text="List a book"
         route="/new-listing"
-        active={window.location.pathname.includes('/new-listing')}
+        active={
+          typeof window === 'undefined'
+            ? false
+            : window?.location.pathname.includes('/new-listing')
+        }
       >
         <CrossIcon />
       </AuthPagesFooterIcon>
