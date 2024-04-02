@@ -2,7 +2,8 @@ import axios, { AxiosRequestConfig } from "axios";
 import Cookies from "js-cookie";
 
 const Axios = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "http://localhost:3000/api/",
+  // baseURL: "https://bookklub-api.onrender.com/api/",
   timeout: 50000,
   headers: {
     Accept: "application/json",

@@ -1,33 +1,26 @@
 // Input.tsx
 
 import React from "react";
-import { Box, Input, Text } from "@chakra-ui/react";
-import { Field } from "formik";
+import { Box, FormErrorMessage, Input, Stack, Text } from "@chakra-ui/react";
+import { ErrorMessage, Field } from "formik";
 interface InputProps {
   label: string;
   value: string;
   placeholder: string;
-  type: string;
-  // onChange: (value: string) => void;
+  type?: string;
   name: string;
-  // You can add more props like placeholder, type, etc. as needed
 }
 
 const ReusableInput: React.FC<InputProps> = ({
   label,
   value,
-  // onChange,
   placeholder,
   type,
   name,
 }) => {
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   onChange(e.target.value);
-  // };
-
   return (
-    <div style={{ color: "#FAF9F6", paddingBottom: "10px" }}>
-      <Text fontSize="14px" fontWeight={500} mb="5px">
+    <Stack spacing={"0.25rem"} style={{ color: "#FAF9F6" }}>
+      <Text fontSize="14px" fontWeight={500}>
         {label}
       </Text>
       <Field
@@ -35,24 +28,35 @@ const ReusableInput: React.FC<InputProps> = ({
         style={{ caretColor: "#90BCA7" }}
         type={type}
         p="25px"
-        backgroundColor="#1B1C1E"
+        height={"3.5rem"}
+        backgroundColor="shade.black"
         fontSize="14px"
         _hover={{ borderColor: "#90BCA7" }}
         focusBorderColor="transparent"
         _placeholder={{
-          color: "#98A2B3",
+          color: "grey.400",
         }}
-        borderColor="#475367"
+        borderColor="grey.600"
         _focus={{
           boxShadow: "none",
-          border: "1px solid #90BCA7",
+          borderColor: "primary.200",
+          border: "1px solid primary.200",
         }}
         // onChange={handleChange}
         placeholder={placeholder}
         value={value}
         name={name}
       />
-    </div>
+      <ErrorMessage
+        component={Text}
+        render={(err) => (
+          <Text color={"error.200"} fontSize={"xs"}>
+            {err}
+          </Text>
+        )}
+        name={name}
+      />
+    </Stack>
   );
 };
 

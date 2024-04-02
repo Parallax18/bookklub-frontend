@@ -14,7 +14,7 @@ const ReusableButton: React.FC<ButtonProps> = ({ Type }) => {
       borderRadius="8px"
       fontSize="16px"
       fontWeight="semibold"
-      bg="#ACCDBD"
+      bg="primary.100"
       color="#FFFFFF"
     >
       {Type}
