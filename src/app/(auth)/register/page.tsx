@@ -1,7 +1,7 @@
 "use client";
-import { Box, Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
-import React, { FormEvent, useEffect, useState } from "react";
+import { Flex, Stack, Text } from "@chakra-ui/react";
+
+import React, { useState } from "react";
 
 import CreateAccount from "@/components/Auth/CreateAccount";
 import VerifyEmail from "@/components/Auth/VerifyEmail";
@@ -17,7 +17,7 @@ enum REGISTRATION_STEPS {
 const Register = () => {
   const [step, setStep] = useState<{
     view: REGISTRATION_STEPS;
-    data?: unknown;
+    data?: { token: string; email: string; password: string };
   }>({ view: REGISTRATION_STEPS.CREATE_ACCOUNT });
   return (
     <>
@@ -31,10 +31,10 @@ const Register = () => {
 
         {step.view === REGISTRATION_STEPS.CREATE_ACCOUNT && (
           <CreateAccount
-            onNext={(token) =>
+            onNext={({ token, email, password }) =>
               setStep({
                 view: REGISTRATION_STEPS.VERIFY_EMAIL,
-                data: { token },
+                data: { token, email, password },
               })
             }
           />
@@ -42,10 +42,14 @@ const Register = () => {
         {step.view === REGISTRATION_STEPS.VERIFY_EMAIL && (
           <VerifyEmail
             data={step.data as { token: string }}
-            onNext={() => setStep({ view: REGISTRATION_STEPS.PROFILE_SETUP })}
+            onNext={() =>
+              setStep({ ...step, view: REGISTRATION_STEPS.PROFILE_SETUP })
+            }
           />
         )}
-        {step.view === REGISTRATION_STEPS.PROFILE_SETUP && <ProfileSetup />}
+        {step.view === REGISTRATION_STEPS.PROFILE_SETUP && (
+          <ProfileSetup {...step.data!} />
+        )}
       </Stack>
     </>
   );
