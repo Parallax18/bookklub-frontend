@@ -3,12 +3,14 @@ interface ButtonProps {
   Type: string;
   borderRadius?: string;
   padding?: string;
+  onClick?: () => void;
   // You can add more props like placeholder, type, etc. as needed
 }
 const ReusableButton: React.FC<ButtonProps> = ({
   Type,
   borderRadius,
   padding,
+  onClick,
 }) => {
   return (
     <Box
@@ -22,6 +24,7 @@ const ReusableButton: React.FC<ButtonProps> = ({
       fontWeight="semibold"
       bg="primary.100"
       color="#FFFFFF"
+      onClick={onClick}
     >
       {Type}
     </Box>
