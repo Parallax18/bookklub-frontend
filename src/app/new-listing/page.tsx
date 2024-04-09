@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import BookListingHeader from '@/components/BookListing/BookListingHeader';
 import BookListingContent from '@/components/BookListing/BooklistingContent';
 import { FormikProvider, useFormik } from 'formik';
+import { Box } from '@chakra-ui/react';
 
 export default function NewListing() {
   const handleSubmit = (value: any, next: any) => {
@@ -35,6 +36,7 @@ export default function NewListing() {
         <BookListingContent formik={formik}></BookListingContent>
         <AuthPagesFooterComponent></AuthPagesFooterComponent>
       </FormikProvider>
+      <Box height="60px"></Box>
     </main>
   );
 }

@@ -2,9 +2,9 @@
 import { Box, Stack, Button } from '@chakra-ui/react';
 
 import ReusableInput from '../general/Input';
-import BookListingHeader from './BookListingHeader';
-
 import ReusableTextarea from '../general/ReusableTextArea';
+import PictureUpload from './PictureUploadComponent';
+
 const BookListingContent = ({ formik }: { formik: any }) => {
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -46,6 +46,11 @@ const BookListingContent = ({ formik }: { formik: any }) => {
             placeholder="Give an extra info that would be useful for renters"
             name="rentInfo"
             description="Provide any extra information, note, caution that anyone renting this book should know"
+          />
+          <PictureUpload
+            label="Add book cover"
+            placeholder="Upload the book cover here"
+            maxFileSizeInMB="2"
           />
         </Stack>
       </Box>
