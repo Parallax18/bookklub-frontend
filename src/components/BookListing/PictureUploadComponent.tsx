@@ -3,15 +3,15 @@ import { Text, Stack, Box, Flex, Button, Spacer } from '@chakra-ui/react';
 import PictureAddIcon from '../icons/PictureAddIcon';
 import PictureIcon from '../icons/PictureIcon';
 import InternetIcon from '../icons/InternetIcon';
-import { stroage } from '/firebase.config';
+// import { stroage } from '/firebase.config';
 import { getDownloadURL, uploadBytesResumable, ref } from 'firebase/storage';
 
 interface PictureUploadProps {
   label: string;
   description?: string;
   placeholder?: string;
-  maxFileSizeInMB: number;
-  name: string;
+  maxFileSizeInMB: string;
+  name?: string;
 }
 const PictureUpload: React.FC<PictureUploadProps> = ({
   label,
@@ -20,42 +20,22 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
   placeholder,
   maxFileSizeInMB,
 }) => {
-  const [hasFileError, setHasFileError] = useState(false);
   const [file, setFile] = useState(null);
-  const uploadToFirebase = (file: File) => {
-    let downloadUrl: string;
-    const storageRef = ref(stroage, file.name);
-    const uploadTask = uploadBytesResumable(storageRef, file);
-    uploadTask.on(
-      'state_changed',
-      null,
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then(
-          (fireStoreFileUrl) => (downloadUrl = fireStoreFileUrl)
-        );
-      }
-    );
-    return downloadUrl;
-  };
-  const handleUploadImage = () => {
+  const handleSelectImage = () => {
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = 'image/png, image/jpeg';
     input.click();
-    setHasFileError(false);
     input.addEventListener('change', (e: any) => {
       const file = e.target.files[0];
-      const { size } = file;
-      console.log({ size, file, maxFileSizeInMB });
-      if (size > maxFileSizeInMB * 1024 * 1024) {
-        setHasFileError(true);
-        return;
-      }
-      const url = uploadToFirebase(file);
-      console.log(url);
+      setFile(file);
+      // console.log({ size, file, maxFileSizeInMB });
+      // if (size > maxFileSizeInMB * 1024 * 1024) {
+
+      //   return;
+      // }
+      // const url = uploadToFirebase(file);
+      // console.log(url);
     });
   };
   return (
@@ -96,7 +76,7 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
             <Button
               height="36px"
               borderRadius="32px"
-              onClick={handleUploadImage}
+              onClick={handleSelectImage}
             >
               <Flex gap="8px">
                 <PictureAddIcon height="16px" /> <Text> Upload Picture</Text>
@@ -114,7 +94,6 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
         </Stack>
       </Box>
 
-      {hasFileError && <div>Has error</div>}
       {/* <ErrorMessage
       component={Text}Picture
       render={(err) => (
