@@ -41,7 +41,7 @@ const Register = () => {
         )}
         {step.view === REGISTRATION_STEPS.VERIFY_EMAIL && (
           <VerifyEmail
-            data={step.data as { token: string }}
+            data={step.data as { token: string; email: string }}
             onNext={() =>
               setStep({ ...step, view: REGISTRATION_STEPS.PROFILE_SETUP })
             }

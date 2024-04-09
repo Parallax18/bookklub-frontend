@@ -20,7 +20,7 @@ const VerifyEmail = ({
   data,
 }: {
   onNext?: Dispatch<SetStateAction<number>>;
-  data: { token: string };
+  data: { token: string; email: string };
 }) => {
   const { mutate: confirmOtp, isPending } = useConfirmOtp();
 
@@ -67,8 +67,8 @@ const VerifyEmail = ({
               Email verification
             </Heading>
             <Text color="grey.400" fontSize="14px">
-              A 6-digit code has been sent to your email johndoe@abc.com. Enter
-              the code to verify email.
+              A 6-digit code has been sent to your email {data.email}. Enter the
+              code to verify email.
             </Text>
             <Stack spacing={0}>
               <HStack>

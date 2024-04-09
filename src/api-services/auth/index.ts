@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { HttpClient } from "../http";
 import { ConfirmOTP, RequestOTP, RequestOTPRes, Signup } from "./types";
+import Cookies from "js-cookie";
 
 export const useRequestOtp = () => {
   return useMutation({
@@ -29,6 +30,9 @@ export const useRegister = () => {
     mutationKey: ["signup"],
     mutationFn: async (data: Signup) => {
       return await HttpClient.post({ url: "signup", data });
+    },
+    onSuccess: (res) => {
+      Cookies.set("bkltoken", res.accessToken);
     },
   });
 };
