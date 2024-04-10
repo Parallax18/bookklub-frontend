@@ -1,7 +1,6 @@
 "use client";
 import { HttpClient } from "@/api-services/http";
 import ReusableInput from "@/components/general/Input";
-import ReusableButton from "@/components/general/ReusableButton";
 import { Box, Button, Heading, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
@@ -44,21 +43,7 @@ const Login = () => {
     const { setSubmitting } = formikHelpers;
     setSubmitting(true);
     setSubmitting(false);
-    // try {
-    //   await mutation.mutateAsync(values);
-    // } catch (error) {
-    //   console.error("An error occurred:", error);
-    // }
   };
-  // const handleSubmit = (
-  //   values: FormValues,
-  //   formikHelpers: FormikHelpers<FormValues>
-  // ) => {
-  //   const { setSubmitting } = formikHelpers;
-  //   setSubmitting(true);
-  //   console.log(values);
-  //   setSubmitting(false);
-  // };
   return (
     <>
       <Stack>
@@ -196,6 +181,7 @@ const Login = () => {
                         color="shade.white"
                         fontSize="14px"
                         cursor="pointer"
+                        onClick={() => router.push("/forgotpassword")}
                       >
                         Forgot password?
                       </Text>

@@ -34,3 +34,11 @@ export type AuthRes = {
   is_email_verified: boolean;
   accessToken: string;
 };
+export type ForgotPassword = {
+  email: string;
+};
+export type ResetPassword = {
+  password: string;
+  token: string;
+  otp: string;
+};
