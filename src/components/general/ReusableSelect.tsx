@@ -11,11 +11,11 @@ import {
   MenuOptionGroup,
   SelectProps,
   Text,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import { ErrorMessage, Field, FieldMetaProps, useFormikContext } from "formik";
-import React, { FC, useEffect, useState } from "react";
-import { BsChevronDown } from "react-icons/bs";
+import { ErrorMessage, Field, FieldMetaProps, useFormikContext } from 'formik';
+import React, { FC, useEffect, useState } from 'react';
+import { BsChevronDown } from 'react-icons/bs';
 
 interface ISelectInput extends SelectProps {
   name: string;
@@ -46,15 +46,15 @@ const SelectInput: FC<ISelectInput> = (props) => {
       {({ meta }: { meta: FieldMetaProps<any> }) => (
         <FormControl
           isInvalid={!!meta.error}
-          w={"full"}
-          mb={{ s: "20px", md: "24px" }}
+          w={'full'}
+          mb={{ s: '20px', md: '24px' }}
         >
           <FormLabel
-            color={"#636985"}
-            fontSize={"1rem"}
-            fontStyle={"normal"}
+            color={'#636985'}
+            fontSize={'1rem'}
+            fontStyle={'normal'}
             fontWeight={400}
-            lineHeight={"normal"}
+            lineHeight={'normal'}
             htmlFor={props.name}
           >
             {props.label}
@@ -64,42 +64,42 @@ const SelectInput: FC<ISelectInput> = (props) => {
             matchWidth
             {...(props?.isMultiSelect && { closeOnSelect: false })}
           >
-            <MenuButton w={"full"} type="button">
+            <MenuButton w={'full'} type="button">
               <Flex
-                width={"full"}
-                height={"3.43975rem"}
-                flexShrink={"0"}
-                borderRadius={"0.4375rem"}
-                border={meta.error ? "1px solid red" : "1px solid #CECECE"}
-                borderColor={meta.error ? "red" : "neutral.50"}
-                background={"white"}
-                alignItems={"center"}
-                justifyContent={"space-between"}
-                px={"1rem"}
+                width={'full'}
+                height={'3.43975rem'}
+                flexShrink={'0'}
+                borderRadius={'0.4375rem'}
+                border={meta.error ? '1px solid red' : '1px solid #CECECE'}
+                borderColor={meta.error ? 'red' : 'neutral.50'}
+                background={'white'}
+                alignItems={'center'}
+                justifyContent={'space-between'}
+                px={'1rem'}
               >
                 {props?.isMultiSelect ? (
                   selectedItems?.length! > 0 ? (
                     selectedItems?.map((item) => {
                       return (
-                        <Text key={item} color={"brand.anonymousGrey"}>
+                        <Text key={item} color={'brand.anonymousGrey'}>
                           {item}
                         </Text>
                       );
                     })
                   ) : (
-                    <Text color={"brand.anonymousGrey"}>
+                    <Text color={'brand.anonymousGrey'}>
                       {props.placeholder}
                     </Text>
                   )
                 ) : (
-                  <Text color={"brand.anonymousGrey"}>
+                  <Text color={'brand.anonymousGrey'}>
                     {selectedTitle || props.placeholder}
                   </Text>
                 )}
                 <BsChevronDown />
               </Flex>
             </MenuButton>
-            <MenuList w={"full"}>
+            <MenuList w={'full'}>
               <MenuOptionGroup
                 onChange={(e) => {
                   if (props?.isMultiSelect) {
@@ -125,19 +125,19 @@ const SelectInput: FC<ISelectInput> = (props) => {
                     );
                   }
                 }}
-                type={props?.isMultiSelect ? "checkbox" : "radio"}
+                type={props?.isMultiSelect ? 'checkbox' : 'radio'}
               >
                 {props?.options?.map((item: any) => (
                   <MenuItemOption
                     key={item?.id}
                     value={item?.id}
-                    width={"full"}
-                    height={"3.43975rem"}
-                    flexShrink={"0"}
-                    alignItems={"center"}
-                    justifyContent={"space-between"}
-                    px={"1rem"}
-                    cursor={"pointer"}
+                    width={'full'}
+                    height={'3.43975rem'}
+                    flexShrink={'0'}
+                    alignItems={'center'}
+                    justifyContent={'space-between'}
+                    px={'1rem'}
+                    cursor={'pointer'}
                   >
                     {item?.title}
                   </MenuItemOption>
