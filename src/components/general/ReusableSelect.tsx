@@ -48,6 +48,7 @@ const SelectInput: FC<ISelectInput> = (props) => {
           isInvalid={!!meta.error}
           w={'full'}
           mb={{ s: '20px', md: '24px' }}
+          background={'transparent'}
         >
           <FormLabel
             color={'#636985'}
@@ -93,7 +94,7 @@ const SelectInput: FC<ISelectInput> = (props) => {
                   )
                 ) : (
                   <Text color={'brand.anonymousGrey'}>
-                    {selectedTitle || props.placeholder}
+                    {selectedTitle ?? props.placeholder}
                   </Text>
                 )}
                 <BsChevronDown />

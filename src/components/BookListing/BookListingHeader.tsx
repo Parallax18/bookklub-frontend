@@ -3,8 +3,8 @@ import { Box, Flex, Link } from '@chakra-ui/react';
 import { useFormikContext } from 'formik';
 import CloseIcon from '../icons/CloseIcon';
 import { Button } from '@chakra-ui/react';
-const BookListingHeader = ({ formik }: { formik: any }) => {
-  const { submitForm } = useFormikContext();
+const BookListingHeader = () => {
+  const { submitForm, isValid } = useFormikContext();
 
   return (
     <Flex justify={'space-between'} align="center" pb="16px">
@@ -14,7 +14,7 @@ const BookListingHeader = ({ formik }: { formik: any }) => {
       <Flex color="grey.400" align="center" gap="16px">
         <Box _hover={{ cursor: 'pointer' }}>Drafts</Box>
         <Button
-          isDisabled={!formik.isValid}
+          isDisabled={!isValid}
           borderRadius="32px"
           padding="8px 12px"
           onClick={submitForm}
