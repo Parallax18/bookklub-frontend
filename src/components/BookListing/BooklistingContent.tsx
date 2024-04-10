@@ -6,7 +6,7 @@ import ReusableTextarea from "../general/ReusableTextArea";
 import PictureUpload from "./PictureUploadComponent";
 import BottomDrawer from "../general/BottomDrawer";
 import { useFormikContext } from "formik";
-import { IBooklistingForm } from "@/app/new-listing/page";
+import { IBooklistingForm } from "@/app/(base)/new-listing/page";
 import WebSearchResults from "./WebSearchResults";
 
 const BookListingContent = () => {

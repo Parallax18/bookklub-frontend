@@ -26,7 +26,6 @@ const ChakraSetup = ({ children }: ChakraSetupProps) => {
           <Box p={"1rem"} w={"full"}>
             {children}
           </Box>
-          <BottomNav />
         </Box>
       </Center>
     </ChakraProvider>
