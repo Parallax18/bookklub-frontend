@@ -1,3 +1,4 @@
+"use client";
 import { useMutation } from "@tanstack/react-query";
 import { HttpClient } from "../http";
 import {
@@ -39,6 +40,23 @@ export const useRegister = () => {
     },
     onSuccess: (res) => {
       Cookies.set("bkltoken", res.accessToken);
+    },
+  });
+};
+
+export const useForgotPassword = () => {
+  return useMutation({
+    mutationKey: ["forgot"],
+    mutationFn: async (data: ForgotPassword) => {
+      return await HttpClient.post({ url: "forgot-password", data });
+    },
+  });
+};
+export const useResetPassword = () => {
+  return useMutation({
+    mutationKey: ["reset"],
+    mutationFn: async (data: ResetPassword) => {
+      return await HttpClient.post({ url: "reset-password", data });
     },
   });
 };
