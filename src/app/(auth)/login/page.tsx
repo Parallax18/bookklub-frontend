@@ -181,6 +181,7 @@ const Login = () => {
                         color="shade.white"
                         fontSize="14px"
                         cursor="pointer"
+                        onClick={() => router.push("/forgotpassword")}
                       >
                         Forgot password?
                       </Text>

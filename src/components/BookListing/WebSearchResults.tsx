@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import CheckedIcon from "../icons/CheckedIcon";
 import { useFormikContext } from "formik";
-import { IBooklistingForm } from "@/app/new-listing/page";
+import { IBooklistingForm } from "@/app/(base)/new-listing/page";
 
 const WebSearchResults = ({ urls }: { urls: string[] }) => {
   const { values, setFieldValue } = useFormikContext<IBooklistingForm>();

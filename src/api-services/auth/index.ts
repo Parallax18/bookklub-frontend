@@ -1,11 +1,12 @@
-"use client";
 import { useMutation } from "@tanstack/react-query";
 import { HttpClient } from "../http";
 import {
   AuthRes,
   ConfirmOTP,
+  ForgotPassword,
   RequestOTP,
   RequestOTPRes,
+  ResetPassword,
   Signup,
 } from "./types";
 import Cookies from "js-cookie";

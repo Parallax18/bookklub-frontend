@@ -4,7 +4,7 @@ import { FormikProvider, useFormik } from "formik";
 import * as Yup from "yup";
 import { useForgotPassword } from "@/api-services/auth";
 import ReusableInput from "@/components/general/Input";
-import { ForgotPassword } from "@/api-services/auth/types";
+import type { ForgotPassword } from "@/api-services/auth/types";
 const ForgotPassword = () => {
   const { mutate: forgotPassword, isPending } = useForgotPassword();
 
