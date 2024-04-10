@@ -23,3 +23,11 @@ export type Signup = {
   email: string;
   password: string;
 };
+export type ForgotPassword = {
+  email: string;
+};
+export type ResetPassword = {
+  password: string;
+  token: string;
+  otp: string;
+};
