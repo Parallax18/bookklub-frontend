@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Text, Stack, Box, Flex, Button, Spacer } from '@chakra-ui/react';
-import PictureAddIcon from '../icons/PictureAddIcon';
-import PictureIcon from '../icons/PictureIcon';
-import InternetIcon from '../icons/InternetIcon';
+import React, { useState } from "react";
+import { Text, Stack, Box, Flex, Button, Spacer } from "@chakra-ui/react";
+import PictureAddIcon from "../icons/PictureAddIcon";
+import PictureIcon from "../icons/PictureIcon";
+import InternetIcon from "../icons/InternetIcon";
 // import { stroage } from '/firebase.config';
-import { getDownloadURL, uploadBytesResumable, ref } from 'firebase/storage';
+import { getDownloadURL, uploadBytesResumable, ref } from "firebase/storage";
 
 interface PictureUploadProps {
   label: string;
@@ -12,6 +12,7 @@ interface PictureUploadProps {
   placeholder?: string;
   maxFileSizeInMB: string;
   name?: string;
+  onSecondaryButtonClick?: () => void;
 }
 const PictureUpload: React.FC<PictureUploadProps> = ({
   label,
@@ -19,14 +20,15 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
   name,
   placeholder,
   maxFileSizeInMB,
+  onSecondaryButtonClick,
 }) => {
   const [file, setFile] = useState(null);
   const handleSelectImage = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/png, image/jpeg';
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/png, image/jpeg";
     input.click();
-    input.addEventListener('change', (e: any) => {
+    input.addEventListener("change", (e: any) => {
       const file = e.target.files[0];
       setFile(file);
       // console.log({ size, file, maxFileSizeInMB });
@@ -39,7 +41,7 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
     });
   };
   return (
-    <Stack spacing={'0.25rem'} style={{ color: '#FAF9F6' }}>
+    <Stack spacing={"0.25rem"} style={{ color: "#FAF9F6" }}>
       <Text fontSize="14px" fontWeight={500}>
         {label}
       </Text>
@@ -47,7 +49,7 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
         borderStyle="dashed"
         p="16px"
         borderRadius="6px"
-        style={{ caretColor: '#90BCA7', border: '1px dashed #475367' }}
+        style={{ caretColor: "#90BCA7", border: "1px dashed #475367" }}
         backgroundColor="shade.black"
         fontSize="14px"
       >
@@ -68,7 +70,7 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
               {placeholder}
             </Text>
             <Text color="grey.400" fontSize="12px">
-              {' '}
+              {" "}
               Picture should not be more than {maxFileSizeInMB}MB
             </Text>
           </Box>
@@ -85,7 +87,11 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
             <Spacer />
             <Text>OR</Text>
             <Spacer />
-            <Button height="36px" variant="roundedTransparent">
+            <Button
+              height="36px"
+              variant="roundedTransparent"
+              onClick={onSecondaryButtonClick}
+            >
               <Flex gap="8px">
                 <InternetIcon height="16px" /> <Text> Search online</Text>
               </Flex>
