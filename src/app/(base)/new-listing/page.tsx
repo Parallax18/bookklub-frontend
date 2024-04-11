@@ -1,18 +1,20 @@
-"use client";
+'use client';
 
-import AuthPagesFooterComponent from "@/components/general/AuthPagesFooterComponent";
-import * as Yup from "yup";
-import BookListingHeader from "@/components/BookListing/BookListingHeader";
-import BookListingContent from "@/components/BookListing/BooklistingContent";
-import { FormikProvider, useFormik } from "formik";
-import { Box } from "@chakra-ui/react";
+import AuthPagesFooterComponent from '@/components/general/AuthPagesFooterComponent';
+import * as Yup from 'yup';
+import BookListingHeader from '@/components/BookListing/BookListingHeader';
+import BookListingContent from '@/components/BookListing/BooklistingContent';
+import { FormikProvider, useFormik } from 'formik';
+import { Box } from '@chakra-ui/react';
 
 export interface IBooklistingForm {
-  bookName: string;
-  authorName: string;
-  bookLocation: string;
-  rentDuration: string;
-  rentInfo: string;
+  title: string;
+  author: string;
+  genre: string;
+  address: string;
+  country: string;
+  state: string;
+  description: string;
   coverImg: string;
 }
 
@@ -22,27 +24,32 @@ export default function NewListing() {
   };
   const formik = useFormik({
     initialValues: {
-      bookName: "",
-      authorName: "",
-      bookLocation: "",
-      rentDuration: "",
-      rentInfo: "",
-      coverImg: "",
+      title: '',
+      author: '',
+      genre: '',
+      address: '',
+      country: '',
+      state: '',
+      description: '',
+      coverImg: '',
     },
     onSubmit: handleSubmit,
     validationSchema: Yup.object().shape({
-      bookName: Yup.string().required("Book name is required"),
-      authorName: Yup.string().required("Author name is required"),
-      bookLocation: Yup.string().required("Book's location is required"),
-      rentDuration: Yup.number().required("Rent duration is required"),
-      rentInfo: Yup.string(),
+      title: Yup.string().required('Book title is required'),
+      author: Yup.string().required(' Author name is required'),
+      genre: Yup.string().required(' Genre is required'),
+      address: Yup.string().required('Book location is required'),
+      country: Yup.string().required('Country is required'),
+      state: Yup.string().required('State is required'),
+      description: Yup.string().required('Book description is required'),
+      coverImg: Yup.string().required('Book cover is required'),
     }),
   });
 
   return (
     <main>
       <FormikProvider value={formik}>
-        <BookListingHeader formik={formik}></BookListingHeader>
+        <BookListingHeader></BookListingHeader>
         <BookListingContent></BookListingContent>
         {/* <AuthPagesFooterComponent></AuthPagesFooterComponent> */}
       </FormikProvider>
