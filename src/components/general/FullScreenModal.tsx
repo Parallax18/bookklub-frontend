@@ -26,10 +26,19 @@ const FullScreenModal = ({
   children,
 }: IFullScreenModal) => {
   return (
-    <Modal onClose={onClose} size={"full"} isOpen={isOpen}>
+    <Modal
+      onClose={onClose}
+      size={"full"}
+      isOpen={isOpen}
+      scrollBehavior="inside"
+    >
       <ModalOverlay />
-      <ModalContent bg={'url("/Template.png")'} maxW={"458px"}>
-        <ModalHeader padding={"1rem"}>
+      <ModalContent
+        bgImage={'url("/Template.png")'}
+        bgColor={"dark"}
+        maxW={"458px"}
+      >
+        <ModalHeader paddingX={"1rem"}>
           <IconButton
             variant={"roundedTransparent"}
             rounded={"1.25rem"}
@@ -43,7 +52,7 @@ const FullScreenModal = ({
             bg={"shade.black"}
             icon={<ArrowLeftIcon boxSize={"1.25rem"} />}
           />
-          <Box color={"grey.400"} mt={"0.75rem"} mb={"1rem"} h={"full"}>
+          <Box color={"grey.400"} mt={"0.75rem"} h={"full"}>
             {header}
           </Box>
         </ModalHeader>

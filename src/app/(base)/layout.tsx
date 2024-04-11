@@ -9,6 +9,7 @@ export default function BaseLayout({
   return (
     <>
       {children}
+
       <BottomNav />
     </>
   );
