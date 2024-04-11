@@ -1,4 +1,4 @@
-export type RequestOTP = {
+export type AuthReq = {
   email: string;
   password: string;
 };
