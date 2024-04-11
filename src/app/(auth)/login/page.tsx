@@ -1,94 +1,39 @@
 "use client";
-import { HttpClient } from "@/api-services/http";
-import ReusableInput from "@/components/Input";
-import ReusableButton from "@/components/ReusableButton";
+
+import ReusableInput from "@/components/general/Input";
 import { Box, Button, Heading, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import React, { FormEvent, useState } from "react";
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
-import {
-  Formik,
-  Field,
-  ErrorMessage,
-  FormikValues,
-  FormikHelpers,
-  useFormik,
-  Form,
-} from "formik";
+import { Form, FormikProvider, useFormik } from "formik";
 import * as Yup from "yup";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
 import Link from "next/link";
-interface FormValues {
-  email: string;
-  password: string;
-}
+import { useLogin } from "@/api-services/auth";
+
 const Login = () => {
+  const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+  const { mutate: login, isPending } = useLogin();
   const validationSchema = Yup.object().shape({
-    // name: Yup.string().required('Name is required'),
     email: Yup.string().email("Invalid email").required("Email is required"),
     password: Yup.string()
       .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
-    // confirmPassword: Yup.string()
-    //   .oneOf([Yup.ref('password')], 'Passwords must match')
-    //   .required('Confirm Password is required'),
   });
-  // const [form, setForm] = useState({ email: "", password: "" });
-  const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
+  const formik = useFormik({
+    initialValues: { email: "", password: "" },
+    validationSchema,
+    onSubmit: (values) => {
+      login(values, {
+        onSuccess: () => {
+          router.push("/");
+        },
+      });
+    },
+  });
 
-  const useHandleLogin = () => {
-    return useMutation({
-      mutationKey: ["login"],
-      mutationFn: async (loginData: FormValues) => {
-        const response = await HttpClient.post({
-          url: "/login",
-          data: loginData,
-        });
-        router.push("/verify_email");
-        return response;
-      },
-      // onSuccess: (data) => {
-      //   console.log({ data });
-      //   router.push("/chat");
-      // },
-      // onError: (error) => {
-      //   console.log({ error });
-      // },
-    });
-  };
-
-  const mutation = useHandleLogin();
-  const handleSubmit = (
-    values: FormValues,
-    formikHelpers: FormikHelpers<FormValues>
-  ) => {
-    mutation.mutate(values);
-    const { setSubmitting } = formikHelpers;
-    setSubmitting(true);
-    setSubmitting(false);
-    // try {
-    //   await mutation.mutateAsync(values);
-    // } catch (error) {
-    //   console.error("An error occurred:", error);
-    // }
-  };
-  // const handleSubmit = (
-  //   values: FormValues,
-  //   formikHelpers: FormikHelpers<FormValues>
-  // ) => {
-  //   const { setSubmitting } = formikHelpers;
-  //   setSubmitting(true);
-  //   console.log(values);
-  //   setSubmitting(false);
-  // };
   return (
     <>
       <Stack>
@@ -96,159 +41,153 @@ const Login = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            paddingTop: "0",
-            minHeight: "100vh",
-            paddingLeft: "5%",
-            paddingRight: "5%",
-            color: "white",
           }}
         >
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "start",
               position: "relative",
-              padding: "4rem 0",
             }}
           >
-            <Formik
-              initialValues={{ email: "", password: "" }}
-              validationSchema={validationSchema}
-              onSubmit={handleSubmit}
-            >
-              {({ values }) => (
-                <Box width={{ base: "100%", sm: "25rem" }}>
-                  <Form
-                    style={{
-                      gap: "1rem",
-                      display: "flex",
-                      flexDirection: "column",
-                      zIndex: 1000,
-                    }}
+            <FormikProvider value={formik}>
+              <Box>
+                <Form
+                  style={{
+                    gap: "1rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    zIndex: 1000,
+                  }}
+                >
+                  <Heading fontSize="32px" color="shade.white">
+                    Login to your account
+                  </Heading>
+                  <Text color="grey.400" fontSize="14px">
+                    Fill in details to login 🤩
+                  </Text>
+                  <Box
+                    lineHeight="1.2"
+                    display="flex"
+                    pb="10px"
+                    alignItems="center"
+                    justifyContent="center"
+                    gap="10px"
+                    transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+                    border="1px"
+                    p="13px"
+                    borderRadius="8px"
+                    fontSize="16px"
+                    fontWeight="700"
+                    borderColor="grey.400"
+                    bg="shade.black"
+                    color="#FFFFFF"
                   >
-                    <Heading fontSize="32px">Login to your account</Heading>
-                    <Text color="#98A2B3" fontSize="14px">
-                      Fill in details to login 🤩
+                    <FcGoogle size={25} />
+                    <Text>Continue with Google</Text>
+                  </Box>
+                  <Box
+                    lineHeight="1.2"
+                    display="flex"
+                    pb="10px"
+                    alignItems="center"
+                    justifyContent="center"
+                    gap="10px"
+                    transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+                    border="1px"
+                    p="13px"
+                    borderRadius="8px"
+                    fontSize="16px"
+                    fontWeight="700"
+                    borderColor="grey.400"
+                    bg="shade.black"
+                    color="#FFFFFF"
+                  >
+                    <FaApple size={25} />
+                    <Text>Continue with Apple</Text>
+                  </Box>
+                  <Box textAlign="center">
+                    <Text
+                      color={"grey.400"}
+                      fontWeight={400}
+                      lineHeight={"145%"}
+                      fontStyle={"normal"}
+                      fontSize={"0.875rem"}
+                    >
+                      OR
                     </Text>
-                    <Box
-                      lineHeight="1.2"
-                      display="flex"
-                      pb="10px"
-                      alignItems="center"
-                      justifyContent="center"
-                      gap="10px"
-                      transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-                      border="1px"
-                      p="13px"
-                      borderRadius="8px"
-                      fontSize="16px"
-                      fontWeight="700"
-                      borderColor="#475367"
-                      bg="#1B1C1E"
-                      color="#FFFFFF"
-                    >
-                      <FcGoogle size={25} />
-                      <Text>Continue with Google</Text>
-                    </Box>
-                    <Box
-                      lineHeight="1.2"
-                      display="flex"
-                      pb="10px"
-                      alignItems="center"
-                      justifyContent="center"
-                      gap="10px"
-                      transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-                      border="1px"
-                      p="13px"
-                      borderRadius="8px"
-                      fontSize="16px"
-                      fontWeight="700"
-                      borderColor="#475367"
-                      bg="#1B1C1E"
-                      color="#FFFFFF"
-                    >
-                      <FaApple size={25} />
-                      <Text>Continue with Apple</Text>
-                    </Box>
-                    <Box
-                      textAlign="center"
-                      fontSize="14px"
-                      color="#98A2B3"
-                      py="10px"
-                    >
-                      <Text>OR</Text>
-                    </Box>
+                  </Box>
+                  <ReusableInput
+                    label="Email"
+                    value={formik.values.email}
+                    placeholder="johndoe@abc.com"
+                    type="email"
+                    name="email"
+                    // onChange={handleChange(values.email)}
+                  />
+                  <Box position="relative">
                     <ReusableInput
-                      label="Email"
-                      value={values.email}
-                      placeholder="johndoe@abc.com"
-                      type="email"
-                      name="email"
-                      // onChange={handleChange(values.email)}
+                      label="Password"
+                      type={showPassword ? "text" : "password"}
+                      value={formik.values.password}
+                      placeholder="password"
+                      name="password"
+                      // onChange={handleChange(values.password)}
                     />
-                    <Box position="relative">
-                      <ReusableInput
-                        label="Password"
-                        type={showPassword ? "text" : "password"}
-                        value={values.password}
-                        placeholder="password"
-                        name="password"
-                        // onChange={handleChange(values.password)}
-                      />
-                      <div
-                        onClick={() =>
-                          setShowPassword((prevState) => !prevState)
-                        }
-                        style={{ cursor: "pointer" }}
-                      >
-                        {showPassword ? (
-                          <VscEyeClosed
-                            size={20}
-                            style={{
-                              position: "absolute",
-                              color: "#98A2B3",
-                              top: "42",
-                              right: "20",
-                            }}
-                          />
-                        ) : (
-                          <VscEye
-                            size={20}
-                            style={{
-                              position: "absolute",
-                              color: "#98A2B3",
-                              top: "42",
-                              right: "20",
-                            }}
-                          />
-                        )}
-                      </div>
-                    </Box>
-                    <Box display="flex" justifyContent="end">
-                      <Text color="#FAF9F6" fontSize="14px" cursor="pointer">
-                        Forgot password?
-                      </Text>
-                    </Box>
-                    <ReusableButton Type="Login" />
-                    <Box
-                      color="#98A2B3"
-                      display="flex"
-                      justifyContent="center"
-                      py="10px"
-                      gap="5px"
+                    <div
+                      onClick={() => setShowPassword((prevState) => !prevState)}
+                      style={{ cursor: "pointer" }}
                     >
-                      Don’t have an account?
-                      <Text fontWeight="700" color="#ffffff">
-                        <Link href="/register"> Create one here</Link>
-                      </Text>
-                    </Box>
-                  </Form>
-                </Box>
-              )}
-            </Formik>
+                      {showPassword ? (
+                        <VscEyeClosed
+                          size={20}
+                          style={{
+                            position: "absolute",
+                            color: "grey.400",
+                            top: "42",
+                            right: "20",
+                          }}
+                        />
+                      ) : (
+                        <VscEye
+                          size={20}
+                          style={{
+                            position: "absolute",
+                            color: "grey.400",
+                            top: "42",
+                            right: "20",
+                          }}
+                        />
+                      )}
+                    </div>
+                  </Box>
+                  <Box display="flex" justifyContent="end">
+                    <Text
+                      color="shade.white"
+                      fontSize="14px"
+                      cursor="pointer"
+                      onClick={() => router.push("/forgotpassword")}
+                    >
+                      Forgot password?
+                    </Text>
+                  </Box>
+
+                  <Button isLoading={isPending} type="submit">
+                    Login
+                  </Button>
+                  <Box
+                    color="grey.400"
+                    display="flex"
+                    justifyContent="center"
+                    py="10px"
+                    gap="5px"
+                  >
+                    Don’t have an account?
+                    <Text fontWeight="700" color="#ffffff">
+                      <Link href="/register"> Create one here</Link>
+                    </Text>
+                  </Box>
+                </Form>
+              </Box>
+            </FormikProvider>
           </div>
         </div>
       </Stack>
