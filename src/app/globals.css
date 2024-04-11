@@ -91,6 +91,7 @@ body {
 
 .phone_country_button > .selected-flag {
   background: #1b1c1e !important;
+
   display: flex !important;
   justify-content: center !important;
   width: 100% !important;

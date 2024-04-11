@@ -1,6 +1,15 @@
 import { useMutation } from "@tanstack/react-query";
 import { HttpClient } from "../http";
-import { ConfirmOTP, RequestOTP, RequestOTPRes, Signup } from "./types";
+import {
+  AuthRes,
+  ConfirmOTP,
+  ForgotPassword,
+  RequestOTP,
+  RequestOTPRes,
+  ResetPassword,
+  Signup,
+} from "./types";
+import Cookies from "js-cookie";
 
 export const useRequestOtp = () => {
   return useMutation({
@@ -28,7 +37,27 @@ export const useRegister = () => {
   return useMutation({
     mutationKey: ["signup"],
     mutationFn: async (data: Signup) => {
-      return await HttpClient.post({ url: "signup", data });
+      return await HttpClient.post<Promise<AuthRes>>({ url: "signup", data });
+    },
+    onSuccess: (res) => {
+      Cookies.set("bkltoken", res.accessToken);
+    },
+  });
+};
+
+export const useForgotPassword = () => {
+  return useMutation({
+    mutationKey: ["forgot"],
+    mutationFn: async (data: ForgotPassword) => {
+      return await HttpClient.post({ url: "forgot-password", data });
+    },
+  });
+};
+export const useResetPassword = () => {
+  return useMutation({
+    mutationKey: ["reset"],
+    mutationFn: async (data: ResetPassword) => {
+      return await HttpClient.post({ url: "reset-password", data });
     },
   });
 };

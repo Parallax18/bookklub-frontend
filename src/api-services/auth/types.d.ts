@@ -23,3 +23,22 @@ export type Signup = {
   email: string;
   password: string;
 };
+
+export type AuthRes = {
+  id: string;
+  createdAt: string;
+  email: string;
+  username: string;
+  mobile: string;
+  country: string;
+  is_email_verified: boolean;
+  accessToken: string;
+};
+export type ForgotPassword = {
+  email: string;
+};
+export type ResetPassword = {
+  password: string;
+  token: string;
+  otp: string;
+};

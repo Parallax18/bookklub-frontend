@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "../page.module.css";
+import styles from "../../page.module.css";
 import { io } from "socket.io-client";
 import Cookies from "js-cookie";
 import { FormEvent, useEffect, useState } from "react";

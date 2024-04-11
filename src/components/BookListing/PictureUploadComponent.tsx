@@ -20,6 +20,7 @@ interface PictureUploadProps {
   placeholder?: string;
   maxFileSizeInMB: string;
   name?: string;
+  onSecondaryButtonClick?: () => void;
 }
 const PictureUpload: React.FC<PictureUploadProps> = ({
   label,
@@ -27,6 +28,7 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
   name,
   placeholder,
   maxFileSizeInMB,
+  onSecondaryButtonClick,
 }) => {
   const [file, setFile] = useState(null);
   const bookavailable = true;
