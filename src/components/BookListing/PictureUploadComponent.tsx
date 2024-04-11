@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Text,
   Stack,
@@ -9,10 +9,10 @@ import {
   Grid,
   GridItem,
   Img,
-} from '@chakra-ui/react';
-import PictureAddIcon from '../icons/PictureAddIcon';
-import PictureIcon from '../icons/PictureIcon';
-import InternetIcon from '../icons/InternetIcon';
+} from "@chakra-ui/react";
+import PictureAddIcon from "../icons/PictureAddIcon";
+import PictureIcon from "../icons/PictureIcon";
+import InternetIcon from "../icons/InternetIcon";
 
 interface PictureUploadProps {
   label: string;
@@ -33,11 +33,11 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
   const [file, setFile] = useState(null);
   const bookavailable = true;
   const handleSelectImage = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/png, image/jpeg';
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/png, image/jpeg";
     input.click();
-    input.addEventListener('change', (e: any) => {
+    input.addEventListener("change", (e: any) => {
       const file = e.target.files[0];
       setFile(file);
     });
@@ -46,35 +46,35 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
     setFile(null);
   };
   return (
-    <Stack spacing={'0.25rem'} style={{ color: '#FAF9F6' }}>
+    <Stack spacing={"0.25rem"} style={{ color: "#FAF9F6" }}>
       <Text fontSize="14px" fontWeight={500}>
         {label}
       </Text>
       {file ? (
         <Grid
           templateColumns="169px 1fr"
-          templateRows={'169px'}
-          gap={'16px'}
-          alignItems={'center'}
+          templateRows={"169px"}
+          gap={"16px"}
+          alignItems={"center"}
         >
           <GridItem>
             <Img
               src={URL.createObjectURL(file)}
-              objectFit={'cover'}
-              objectPosition={'center'}
-              height={'100%'}
-              width={'100%'}
+              objectFit={"cover"}
+              objectPosition={"center"}
+              height={"100%"}
+              width={"100%"}
             />
           </GridItem>
           <GridItem>
-            <Stack gap={'12px'}>
-              <Button onClick={handleSelectImage} variant={'rounded'}>
+            <Stack gap={"12px"}>
+              <Button onClick={handleSelectImage} variant={"rounded"}>
                 Change Picture
               </Button>
               <Button
                 onClick={handleDeleteImage}
-                color={'error.200'}
-                variant={'roundedTransparent'}
+                color={"error.200"}
+                variant={"roundedTransparent"}
               >
                 Delete picture
               </Button>
@@ -86,7 +86,7 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
           borderStyle="dashed"
           p="16px"
           borderRadius="6px"
-          style={{ caretColor: '#90BCA7', border: '1px dashed #475367' }}
+          style={{ caretColor: "#90BCA7", border: "1px dashed #475367" }}
           backgroundColor="shade.black"
           fontSize="14px"
         >
@@ -107,7 +107,7 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
                 {placeholder}
               </Text>
               <Text color="grey.400" fontSize="12px">
-                {' '}
+                {" "}
                 Picture should not be more than {maxFileSizeInMB}MB
               </Text>
             </Box>
@@ -124,7 +124,11 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
               <Spacer />
               <Text>OR</Text>
               <Spacer />
-              <Button height="36px" variant="roundedTransparent">
+              <Button
+                height="36px"
+                variant="roundedTransparent"
+                onClick={onSecondaryButtonClick}
+              >
                 <Flex gap="8px">
                   <InternetIcon height="16px" /> <Text> Search online</Text>
                 </Flex>
@@ -146,7 +150,7 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
         <Box fontSize="14px" color="grey.400" lineHeight="1.45">
           {description}
         </Box>
-      )}{' '}
+      )}{" "}
     </Stack>
   );
 };
