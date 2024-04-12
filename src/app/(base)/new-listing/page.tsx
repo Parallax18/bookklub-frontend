@@ -12,8 +12,7 @@ export interface IBooklistingForm {
   author: string;
   genre: string;
   address: string;
-  country: string;
-  state: string;
+
   description: string;
   coverImg: string;
 }
@@ -28,8 +27,7 @@ export default function NewListing() {
       author: '',
       genre: '',
       address: '',
-      country: '',
-      state: '',
+
       description: '',
       coverImg: '',
     },
@@ -39,8 +37,6 @@ export default function NewListing() {
       author: Yup.string().required(' Author name is required'),
       genre: Yup.string().required(' Genre is required'),
       address: Yup.string().required('Book location is required'),
-      country: Yup.string().required('Country is required'),
-      state: Yup.string().required('State is required'),
       description: Yup.string().required('Book description is required'),
       coverImg: Yup.string().required('Book cover is required'),
     }),

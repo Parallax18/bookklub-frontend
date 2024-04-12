@@ -9,17 +9,18 @@ import {
   Grid,
   GridItem,
   Img,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import PictureAddIcon from '../icons/PictureAddIcon';
 import PictureIcon from '../icons/PictureIcon';
 import InternetIcon from '../icons/InternetIcon';
-
+import { ErrorMessage } from 'formik';
 interface PictureUploadProps {
   label: string;
   description?: string;
   placeholder?: string;
   maxFileSizeInMB: string;
-  name?: string;
+  name: string;
   onSecondaryButtonClick?: () => void;
 }
 const PictureUpload: React.FC<PictureUploadProps> = ({
@@ -31,7 +32,7 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
   onSecondaryButtonClick,
 }) => {
   const [file, setFile] = useState(null);
-  const bookavailable = true;
+  const isSmall = useMediaQuery('max-width: 480px');
   const handleSelectImage = () => {
     const input = document.createElement('input');
     input.type = 'file';
@@ -107,11 +108,14 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
                 {placeholder}
               </Text>
               <Text color="grey.400" fontSize="12px">
-                {' '}
                 Picture should not be more than {maxFileSizeInMB}MB
               </Text>
             </Box>
-            <Flex gap="8px" align="center" wrap="wrap">
+            <Flex
+              gap={isSmall ? '2px' : '8px'}
+              align="center"
+              flexDirection={isSmall ? 'column' : 'row'}
+            >
               <Button
                 height="36px"
                 borderRadius="32px"
@@ -124,7 +128,11 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
               <Spacer />
               <Text>OR</Text>
               <Spacer />
-              <Button height="36px" variant="roundedTransparent">
+              <Button
+                height="36px"
+                variant="roundedTransparent"
+                onClick={onSecondaryButtonClick}
+              >
                 <Flex gap="8px">
                   <InternetIcon height="16px" /> <Text> Search online</Text>
                 </Flex>
@@ -133,15 +141,15 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
           </Stack>
         </Box>
       )}
-      {/* <ErrorMessage
-      component={Text}Picture
-      render={(err) => (
-        <Text color={'error.200'} fontSize={'xs'}>
-          {err}
-        </Text>
-      )}
-      name={name}
-    /> */}
+      <ErrorMessage
+        component={Text}
+        render={(err) => (
+          <Text color={'error.200'} fontSize={'xs'}>
+            {err}
+          </Text>
+        )}
+        name={name}
+      />
       {description && (
         <Box fontSize="14px" color="grey.400" lineHeight="1.45">
           {description}

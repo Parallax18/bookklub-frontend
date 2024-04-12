@@ -8,6 +8,9 @@ import BottomDrawer from '../general/BottomDrawer';
 import { useFormikContext } from 'formik';
 import { IBooklistingForm } from '@/app/(base)/new-listing/page';
 import WebSearchResults from './WebSearchResults';
+import CustomSelectInput from '../general/CustomSelectInput';
+import SelectInput from '../general/ReusableSelect';
+import PlacesAutocompleteComponent from '../general/PlaceAutocompleteComponent';
 
 const BookListingContent = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -30,28 +33,41 @@ const BookListingContent = () => {
             type="text"
             name="author"
           />
+          <CustomSelectInput
+            label="Genre"
+            name="genre"
+            value={values.genre}
+            placeholder="Select or enter a genre"
+            options={[
+              {
+                value: 'Fiction',
+                label: 'Fiction',
+              },
+              {
+                value: 'Sci-Fi',
+                label: 'Sci-Fi',
+              },
+              {
+                value: 'Self-help',
+                label: 'Self-help',
+              },
+              {
+                value: 'Business',
+                label: 'Business',
+              },
+              {
+                value: 'Christian',
+                label: 'Christian',
+              },
+            ]}
+          />
 
-          <ReusableInput
+          <PlacesAutocompleteComponent
             label="Book location"
             value={values.address}
             placeholder="e.g. 23, Langley Crescent, Idumota"
-            type="text"
             name="address"
             description="This displays as the location of the book whenever someone wants to rent it"
-          />
-          <ReusableInput
-            label="Country"
-            value={values.country}
-            placeholder="e.g. Nigeria"
-            type="text"
-            name="country"
-          />
-          <ReusableInput
-            label="State"
-            value={values.state}
-            placeholder="e.g. Lagos"
-            type="text"
-            name="state"
           />
 
           <ReusableTextarea
@@ -69,6 +85,7 @@ const BookListingContent = () => {
           /> */}
           <PictureUpload
             label="Add book cover"
+            name="coverImg"
             placeholder="Upload the book cover here"
             maxFileSizeInMB="2"
             description="This is the book cover that would be displayed. Ensure you select a picture that support the book name and is of high quality"
