@@ -13,6 +13,8 @@ import {
 import PictureAddIcon from "../icons/PictureAddIcon";
 import PictureIcon from "../icons/PictureIcon";
 import InternetIcon from "../icons/InternetIcon";
+import { useFormikContext } from "formik";
+import { IBooklistingForm } from "@/app/(base)/new-listing/page";
 
 interface PictureUploadProps {
   label: string;
@@ -31,7 +33,8 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
   onSecondaryButtonClick,
 }) => {
   const [file, setFile] = useState(null);
-  const bookavailable = true;
+  const { values, setFieldValue } = useFormikContext<IBooklistingForm>();
+
   const handleSelectImage = () => {
     const input = document.createElement("input");
     input.type = "file";
@@ -39,48 +42,57 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
     input.click();
     input.addEventListener("change", (e: any) => {
       const file = e.target.files[0];
-      setFile(file);
+
+      setFieldValue("coverImg", URL.createObjectURL(file));
     });
   };
   const handleDeleteImage = () => {
-    setFile(null);
+    setFieldValue("coverImg", null);
   };
   return (
     <Stack spacing={"0.25rem"} style={{ color: "#FAF9F6" }}>
       <Text fontSize="14px" fontWeight={500}>
         {label}
       </Text>
-      {file ? (
-        <Grid
-          templateColumns="169px 1fr"
-          templateRows={"169px"}
-          gap={"16px"}
-          alignItems={"center"}
-        >
-          <GridItem>
+      {values?.coverImg ? (
+        <Flex gap={"16px"} alignItems={"center"}>
+          <Box
+            width={"10.5625rem"}
+            height={"10.5625rem"}
+            rounded={"0.5rem"}
+            bg={"shade.black"}
+          >
             <Img
-              src={URL.createObjectURL(file)}
+              src={values.coverImg}
               objectFit={"cover"}
               objectPosition={"center"}
               height={"100%"}
               width={"100%"}
+              rounded={"0.5rem"}
+              bg={"shade.black"}
             />
-          </GridItem>
-          <GridItem>
-            <Stack gap={"12px"}>
-              <Button onClick={handleSelectImage} variant={"rounded"}>
-                Change Picture
-              </Button>
-              <Button
-                onClick={handleDeleteImage}
-                color={"error.200"}
-                variant={"roundedTransparent"}
-              >
-                Delete picture
-              </Button>
-            </Stack>
-          </GridItem>
-        </Grid>
+          </Box>
+
+          <Stack gap={"12px"} flex={1}>
+            <Button
+              onClick={handleSelectImage}
+              variant={"rounded"}
+              fontSize={"0.875rem"}
+              py={"0.75rem"}
+            >
+              Change Picture
+            </Button>
+            <Button
+              onClick={handleDeleteImage}
+              color={"error.200"}
+              variant={"outlined"}
+              fontSize={"0.875rem"}
+              py={"0.75rem"}
+            >
+              Delete picture
+            </Button>
+          </Stack>
+        </Flex>
       ) : (
         <Box
           borderStyle="dashed"
@@ -111,22 +123,26 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
                 Picture should not be more than {maxFileSizeInMB}MB
               </Text>
             </Box>
-            <Flex gap="8px" align="center" wrap="wrap">
+            <Flex gap="8px" alignItems={"center"} justifyContent={"center"}>
               <Button
                 height="36px"
                 borderRadius="32px"
+                fontSize={"0.875rem"}
                 onClick={handleSelectImage}
               >
                 <Flex gap="8px">
                   <PictureAddIcon height="16px" /> <Text> Upload Picture</Text>
                 </Flex>
               </Button>
-              <Spacer />
-              <Text>OR</Text>
-              <Spacer />
+
+              <Text color={"grey.400"} fontSize={"0.75rem"}>
+                OR
+              </Text>
+
               <Button
                 height="36px"
-                variant="roundedTransparent"
+                variant="outlined"
+                fontSize={"0.875rem"}
                 onClick={onSecondaryButtonClick}
               >
                 <Flex gap="8px">
@@ -147,7 +163,7 @@ const PictureUpload: React.FC<PictureUploadProps> = ({
       name={name}
     /> */}
       {description && (
-        <Box fontSize="14px" color="grey.400" lineHeight="1.45">
+        <Box fontSize="14px" color="grey.desc" lineHeight="1.45">
           {description}
         </Box>
       )}{" "}

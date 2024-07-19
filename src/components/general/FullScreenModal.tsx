@@ -40,7 +40,7 @@ const FullScreenModal = ({
       >
         <ModalHeader paddingX={"1rem"}>
           <IconButton
-            variant={"roundedTransparent"}
+            variant={"outlined"}
             rounded={"1.25rem"}
             onClick={onClose}
             aria-label="Go back"
