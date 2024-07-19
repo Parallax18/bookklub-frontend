@@ -1,21 +1,20 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import {
+  Badge,
   Box,
-  Button,
-  Center,
   Flex,
   Stack,
   Text,
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import BookItemCard from "@/components/BookListing/BookItemCard";
+import BookItemCard from "@/components/home/BookItemCard";
 import MapMarker from "@/components/icons/MapMarker";
 import SearchInput from "@/components/general/SearchInput";
 import FullScreenModal from "@/components/general/FullScreenModal";
-import EmptySearch from "@/components/svgs/EmptySearch";
+
+import BookSearch, { bookSearchFilters } from "@/components/home/BookSearch";
 
 export default function Home() {
   const { onOpen, isOpen, onClose } = useDisclosure();
@@ -65,24 +64,43 @@ export default function Home() {
       <FullScreenModal
         isOpen={isOpen}
         onClose={onClose}
-        header={<SearchInput />}
+        header={
+          <Stack spacing={"1rem"}>
+            <SearchInput />
+            <Flex gap={"0.75rem"} overflowX={"scroll"}>
+              {bookSearchFilters.map(({ Icon, title }) => (
+                <Badge
+                  key={title}
+                  bg={"shade.black"}
+                  border={"1px"}
+                  borderColor={"grey.600"}
+                  p={"0.5rem 0.75rem"}
+                  rounded={"2rem"}
+                  color={"grey.400"}
+                  display={"flex"}
+                  gap={"0.5rem"}
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  width={"max-content"}
+                  textTransform={"capitalize"}
+                >
+                  <Icon boxSize={"1rem"} />
+                  <Text
+                    color={"shade.white"}
+                    fontSize={"0.875rem"}
+                    fontStyle={"normal"}
+                    fontWeight={400}
+                    lineHeight={"145%"}
+                  >
+                    {title}
+                  </Text>
+                </Badge>
+              ))}
+            </Flex>
+          </Stack>
+        }
       >
-        <Center justifyContent={"center"} alignItems={"center"} h={"full"}>
-          <VStack my={"auto"} height={"max-content"}>
-            <EmptySearch />
-            <Text
-              textAlign={"center"}
-              color={"shade.white"}
-              fontSize={"1rem"}
-              fontStyle={"normal"}
-              fontWeight={400}
-              lineHeight={"145%"}
-            >
-              No search history available. Your search history would appear here
-              when you have made a search.
-            </Text>
-          </VStack>
-        </Center>
+        <BookSearch />
       </FullScreenModal>
     </>
   );

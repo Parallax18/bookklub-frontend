@@ -25,8 +25,6 @@ const CreateAccount = ({
         .required("Password is required"),
     }),
     onSubmit: (val) => {
-      console.log({ val });
-
       requestOtp(val, {
         onSuccess: (res) => onNext({ token: res.token, ...val }),
       });
