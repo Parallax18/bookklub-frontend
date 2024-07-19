@@ -2,7 +2,8 @@ import axios, { AxiosRequestConfig } from "axios";
 import Cookies from "js-cookie";
 
 const Axios = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "https://bookklub-api.onrender.com/api/",
+  // baseURL: "http://localhost:3000/api/",
   timeout: 50000,
   headers: {
     Accept: "application/json",
@@ -12,7 +13,7 @@ const Axios = axios.create({
 Axios.interceptors.request.use(
   // @ts-ignore
   (config: AxiosRequestConfig) => {
-    const token = Cookies.get("bbk");
+    const token = Cookies.get("bkltoken");
 
     return {
       ...config,
@@ -33,8 +34,16 @@ Axios.interceptors.response.use(
     return response;
   },
   (error) => {
-    //  ...
-    return Promise.reject(error);
+    if (
+      window.location.pathname !== "/login" &&
+      (error.response.status === 404 ||
+        error.response.message === "User not Found")
+    ) {
+      Cookies.remove("bkltoken");
+      localStorage.clear();
+      window.location.href = "/login";
+      return Promise.reject(error);
+    }
   }
 );
 

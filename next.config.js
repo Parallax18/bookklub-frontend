@@ -5,6 +5,9 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV !== "development", // Remove console.log in production
   },
+  images: {
+    domains: ["firebasestorage.googleapis.com", "s3-alpha-sig.figma.com"],
+  },
 };
 
 // Configuration object tells the next-pwa plugin

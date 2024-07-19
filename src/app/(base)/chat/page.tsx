@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "../page.module.css";
+import styles from "../../page.module.css";
 import { io } from "socket.io-client";
 import Cookies from "js-cookie";
 import { FormEvent, useEffect, useState } from "react";
@@ -212,7 +212,7 @@ export default function Chat() {
               <button
                 type="submit"
                 style={{
-                  backgroundColor: "#ACCDBD",
+                  backgroundColor: "primary.100",
                   // padding: "1rem",
                   width: "20%",
                   outline: "none",

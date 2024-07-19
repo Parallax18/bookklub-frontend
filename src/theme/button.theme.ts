@@ -6,23 +6,37 @@ export const Button = {
     p: "16px",
     borderRadius: "8px",
     fontSize: "16px",
-    fontWeight: "semibold",
+    fontWeight: "700",
     bg: "primary.400",
     color: "shade.white",
-  },
-
-  _disabled: {
-    bg: "#ACCDBD",
-  },
-
-  _loading: {
-    bg: "#ACCDBD",
+    _disabled: {
+      opacity: 1,
+      bg: "primary.100",
+      _hover: {
+        opacity: "1",
+        bg: "primary.100",
+      },
+    },
+    _loading: {
+      opacity: 1,
+      bg: "primary.100",
+      _hover: {
+        opacity: "1",
+        bg: "primary.100",
+      },
+    },
   },
 
   variants: {
     rounded: {
       bg: "primary.400",
       borderRadius: "32px",
+    },
+    roundedTransparent: {
+      bg: "transparent",
+      borderRadius: "2rem",
+      border: "1px",
+      borderColor: "grey.600",
     },
   },
   defaultProps: {
