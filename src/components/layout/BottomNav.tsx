@@ -4,7 +4,14 @@ import BookIcon from "../icons/BookIcon";
 import CrossIcon from "../icons/CrossIcon";
 import BellIcon from "../icons/BellIcon";
 import ChatIcon from "../icons/ChatIcon";
-import { Box, IconProps, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  IconProps,
+  SimpleGrid,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { useRouter, usePathname } from "next/navigation";
 
 interface INavItem {
@@ -80,23 +87,24 @@ const NavItem = ({ Icon, title, route }: INavItem) => {
 
 const BottomNav = () => {
   return (
-    <SimpleGrid
-      columns={Routes.length}
-      bg={"#1b1c1ee6"}
-      backdropBlur={"6px"}
-      gap={2}
-      alignItems={"center"}
-      placeItems={"center"}
-      w={"full"}
-      maxW={"458px"}
-      position={"fixed"}
-      bottom={0}
-      left={0}
-    >
-      {Routes.map((item) => (
-        <NavItem key={item.title} {...item} />
-      ))}
-    </SimpleGrid>
+    <Center position={"fixed"} bottom={0} w={"full"} left={0}>
+      <SimpleGrid
+        columns={Routes.length}
+        bg={"#1b1c1ee6"}
+        backdropBlur={"6px"}
+        gap={2}
+        alignItems={"center"}
+        placeItems={"center"}
+        w={"full"}
+        maxW={"458px"}
+        left={0}
+        paddingBottom={"0.5rem"}
+      >
+        {Routes.map((item) => (
+          <NavItem key={item.title} {...item} />
+        ))}
+      </SimpleGrid>
+    </Center>
   );
 };
 

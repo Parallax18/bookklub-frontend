@@ -17,8 +17,8 @@ interface IBottomDrawer {
   isOpen: ModalProps["isOpen"];
   onClose: ModalProps["onClose"];
   title: string;
-  subTitle: string;
-  closeButton: React.JSX.Element;
+  subTitle?: string;
+  closeButton?: React.JSX.Element;
   children: React.JSX.Element;
 }
 

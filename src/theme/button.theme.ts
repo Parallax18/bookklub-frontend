@@ -9,6 +9,7 @@ export const Button = {
     fontWeight: "700",
     bg: "primary.400",
     color: "shade.white",
+    outline: "none",
     _disabled: {
       opacity: 1,
       bg: "primary.100",
@@ -32,7 +33,7 @@ export const Button = {
       bg: "primary.400",
       borderRadius: "32px",
     },
-    roundedTransparent: {
+    outlined: {
       bg: "transparent",
       borderRadius: "2rem",
       border: "1px",

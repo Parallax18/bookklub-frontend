@@ -6,7 +6,13 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV !== "development", // Remove console.log in production
   },
   images: {
-    domains: ["firebasestorage.googleapis.com", "s3-alpha-sig.figma.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*",
+      },
+    ],
+    // domains: ["firebasestorage.googleapis.com", "s3-alpha-sig.figma.com"],
   },
 };
 

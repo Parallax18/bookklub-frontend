@@ -1,21 +1,34 @@
-'use client';
-import { Box, Stack, Button, useDisclosure } from '@chakra-ui/react';
+"use client";
+import { Box, Stack, Button, useDisclosure, Text } from "@chakra-ui/react";
 
-import ReusableInput from '../general/Input';
-import ReusableTextarea from '../general/ReusableTextArea';
-import PictureUpload from './PictureUploadComponent';
-import BottomDrawer from '../general/BottomDrawer';
-import { useFormikContext } from 'formik';
-import { IBooklistingForm } from '@/app/(base)/new-listing/page';
-import WebSearchResults from './WebSearchResults';
+import ReusableInput from "../general/Input";
+import ReusableTextarea from "../general/ReusableTextArea";
+import PictureUpload from "./PictureUploadComponent";
+import BottomDrawer from "../general/BottomDrawer";
+import { useFormikContext } from "formik";
+import { IBooklistingForm } from "@/app/(base)/new-listing/page";
+import WebSearchResults from "./WebSearchResults";
+import CustomSelect from "../general/CustomSelect";
+import {
+  useGetAllCountries,
+  useGetAllStates,
+} from "@/api-services/country-list";
 
 const BookListingContent = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { values, handleSubmit } = useFormikContext<IBooklistingForm>();
+  const {
+    isOpen: draftDialogIsOpen,
+    onOpen: openDraftDialog,
+    onClose: closeDraftDialog,
+  } = useDisclosure();
+  const { data: countries } = useGetAllCountries();
+  const { data: states } = useGetAllStates();
+  const { values, handleSubmit, setFieldValue } =
+    useFormikContext<IBooklistingForm>();
   return (
     <form onSubmit={handleSubmit}>
-      <Box>
-        <Stack spacing={'16px'}>
+      <Box pb={"1rem"}>
+        <Stack spacing={"16px"}>
           <ReusableInput
             label="Book title"
             value={values.title}
@@ -31,28 +44,42 @@ const BookListingContent = () => {
             name="author"
           />
 
-          <ReusableInput
-            label="Book location"
-            value={values.address}
-            placeholder="e.g. 23, Langley Crescent, Idumota"
-            type="text"
-            name="address"
-            description="This displays as the location of the book whenever someone wants to rent it"
-          />
-          <ReusableInput
-            label="Country"
-            value={values.country}
-            placeholder="e.g. Nigeria"
-            type="text"
-            name="country"
-          />
-          <ReusableInput
-            label="State"
-            value={values.state}
-            placeholder="e.g. Lagos"
-            type="text"
-            name="state"
-          />
+          <Stack spacing={"0.25rem"}>
+            <Text fontSize="14px" fontWeight={500} color={"shade.white"}>
+              Country
+            </Text>
+            <CustomSelect
+              onSelect={(value: string) => setFieldValue("country", value)}
+              label="Select a country"
+              placeholder="e.g. Nigeria"
+              data={countries?.map((item) => ({
+                id: item.name,
+                title: item.name,
+                flag: item.flag,
+              }))}
+            />
+          </Stack>
+
+          <Stack spacing={"0.25rem"}>
+            <Text fontSize="14px" fontWeight={500} color={"shade.white"}>
+              State
+            </Text>
+            <CustomSelect
+              onSelect={(value: string) => setFieldValue("state", value)}
+              label="Select a state"
+              placeholder="Select your state"
+              data={states
+                ?.filter(
+                  (i) => i.name.toLowerCase() === values.country.toLowerCase()
+                )
+                .flatMap((item) =>
+                  item.states.map((state) => ({
+                    id: state.name,
+                    title: state.name,
+                  }))
+                )}
+            />
+          </Stack>
 
           <ReusableTextarea
             label="Book description"
@@ -60,13 +87,7 @@ const BookListingContent = () => {
             placeholder="Enter a book description"
             name="description"
           />
-          {/* <ReusableTextarea
-            label="Book description"
-            value={values.description}
-            placeholder="Give an extra info that would be useful for renters"
-            name="description"
-            description="Provide any extra information, note, caution that anyone renting this book should know"
-          /> */}
+
           <PictureUpload
             label="Add book cover"
             placeholder="Upload the book cover here"
@@ -82,29 +103,42 @@ const BookListingContent = () => {
         isOpen={isOpen}
         onClose={onClose}
         title={values.title}
-        subTitle={'Web results'}
+        subTitle={"Web results"}
         closeButton={
-          <Button borderRadius="2rem" padding="0.5rem 0.75rem">
+          <Button
+            onClick={onClose}
+            borderRadius="2rem"
+            padding="0.5rem 0.75rem"
+          >
             Done
           </Button>
         }
       >
         <WebSearchResults
           urls={[
-            'https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/lighting.jpeg?alt=media&token=43c434cf-19a3-404d-bf02-41453b4fbc1b',
-            'https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/lady.jpeg?alt=media&token=25156b8e-f42d-4409-9a7e-2ea984bd5aa8',
-            'https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/earrings.jpeg?alt=media&token=dbc6a50e-8330-4d55-88ba-b1298db27b74',
-            'https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/flashy.jpeg?alt=media&token=5ee8efcc-ef77-4c06-b19d-10d7c2499bd5',
-            'https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/lighting.jpeg?alt=media&token=43c434cf-19a3-404d-bf02-41453b4fbc1b',
-            'https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/lady.jpeg?alt=media&token=25156b8e-f42d-4409-9a7e-2ea984bd5aa8',
-            'https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/earrings.jpeg?alt=media&token=dbc6a50e-8330-4d55-88ba-b1298db27b74',
-            'https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/flashy.jpeg?alt=media&token=5ee8efcc-ef77-4c06-b19d-10d7c2499bd5',
-            'https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/lighting.jpeg?alt=media&token=43c434cf-19a3-404d-bf02-41453b4fbc1b',
-            'https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/lady.jpeg?alt=media&token=25156b8e-f42d-4409-9a7e-2ea984bd5aa8',
-            'https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/earrings.jpeg?alt=media&token=dbc6a50e-8330-4d55-88ba-b1298db27b74',
-            'https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/flashy.jpeg?alt=media&token=5ee8efcc-ef77-4c06-b19d-10d7c2499bd5',
-          ]}
+            "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/lighting.jpeg?alt=media&token=43c434cf-19a3-404d-bf02-41453b4fbc1b",
+            "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/lady.jpeg?alt=media&token=25156b8e-f42d-4409-9a7e-2ea984bd5aa8",
+            "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/earrings.jpeg?alt=media&token=dbc6a50e-8330-4d55-88ba-b1298db27b74",
+            "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/flashy.jpeg?alt=media&token=5ee8efcc-ef77-4c06-b19d-10d7c2499bd5",
+            "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/lighting.jpeg?alt=media&token=43c434cf-19a3-404d-bf02-41453b4fbc1b",
+            "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/lady.jpeg?alt=media&token=25156b8e-f42d-4409-9a7e-2ea984bd5aa8",
+            "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/earrings.jpeg?alt=media&token=dbc6a50e-8330-4d55-88ba-b1298db27b74",
+            "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/flashy.jpeg?alt=media&token=5ee8efcc-ef77-4c06-b19d-10d7c2499bd5",
+            "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/lighting.jpeg?alt=media&token=43c434cf-19a3-404d-bf02-41453b4fbc1b",
+            "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/lady.jpeg?alt=media&token=25156b8e-f42d-4409-9a7e-2ea984bd5aa8",
+            "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/earrings.jpeg?alt=media&token=dbc6a50e-8330-4d55-88ba-b1298db27b74",
+            "https://firebasestorage.googleapis.com/v0/b/bookklub-v0.appspot.com/o/flashy.jpeg?alt=media&token=5ee8efcc-ef77-4c06-b19d-10d7c2499bd5",
+          ].map((link, index) => ({ id: index, url: link }))}
         />
+      </BottomDrawer>
+      <BottomDrawer
+        isOpen={draftDialogIsOpen}
+        onClose={closeDraftDialog}
+        title={"Save this listing in draft"}
+      >
+        <Stack>
+          <Text></Text>
+        </Stack>
       </BottomDrawer>
     </form>
   );
