@@ -1,5 +1,9 @@
 import { IBookItemCard } from "./components/home/BookItemCard";
-import { IRentalItemProps } from "./components/Rentals/RentalItem";
+import {
+  IInboundRental,
+  IOutboundRental,
+  IRentalItemProps,
+} from "./components/Rentals/RentalItem";
 
 export const dummyBooks: IBookItemCard[] = [
   {
@@ -84,7 +88,7 @@ export const dummyBooks: IBookItemCard[] = [
   },
 ];
 
-export const dummyRentals: IRentalItemProps[] = [
+export const dummyRentals: (IOutboundRental | IInboundRental)[] = [
   // Outbound Rental
   {
     title: "The Great Gatsby",
