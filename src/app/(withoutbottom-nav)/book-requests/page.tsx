@@ -5,9 +5,18 @@ import BookRequestItem, {
   BookRequestState,
   BookRequestStates,
 } from "@/components/BookRequests/BookReqauestItem";
+import EmptyRequests from "@/components/BookRequests/EmptyRequests";
 import PillBar from "@/components/general/PillBar";
 import ArrowLeftIcon from "@/components/icons/ArrowLeftIcon";
-import { Badge, Box, Flex, IconButton, Stack, Text } from "@chakra-ui/react";
+import {
+  Badge,
+  Box,
+  Center,
+  Flex,
+  IconButton,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -19,13 +28,7 @@ const dummyRequests: BookRequestItemProps[] = [
     type: "APPROVED",
     timeAndDate: "2024-07-15T10:30:00Z",
   },
-  {
-    bookName: "1984",
-    ownerName: "Charlie",
-    senderName: "Dave",
-    type: "SENT",
-    timeAndDate: "2024-07-16T14:00:00Z",
-  },
+
   {
     bookName: "To Kill a Mockingbird",
     ownerName: "Eve",
@@ -47,13 +50,7 @@ const dummyRequests: BookRequestItemProps[] = [
     type: "APPROVED",
     timeAndDate: "2024-07-20T08:30:00Z",
   },
-  {
-    bookName: "The Catcher in the Rye",
-    ownerName: "Mike",
-    senderName: "Nina",
-    type: "SENT",
-    timeAndDate: "2024-07-21T13:00:00Z",
-  },
+
   {
     bookName: "Brave New World",
     ownerName: "Olivia",
@@ -73,6 +70,9 @@ const dummyRequests: BookRequestItemProps[] = [
 const BookRequests = () => {
   const router = useRouter();
   const [filterBy, setFilterBy] = useState<BookRequestState | "ALL">("ALL");
+  const requests = dummyRequests.filter((_req) =>
+    filterBy === "ALL" ? _req.type : _req.type === filterBy
+  );
   return (
     <>
       <Box>
@@ -106,13 +106,15 @@ const BookRequests = () => {
         />
       </Box>
       <Stack gap={"1.5rem"} mt={"1.5rem"} overflowY={"scroll"} maxH={"80vh"}>
-        {dummyRequests
-          .filter((_req) =>
-            filterBy === "ALL" ? _req.type : _req.type === filterBy
-          )
-          .map((req) => (
+        {requests.length === 0 ? (
+          <Center px={"1rem"} h={"60vh"} my={"auto"}>
+            <EmptyRequests type={filterBy as BookRequestState} />
+          </Center>
+        ) : (
+          requests.map((req) => (
             <BookRequestItem key={req.timeAndDate} {...req} />
-          ))}
+          ))
+        )}
       </Stack>
     </>
   );
