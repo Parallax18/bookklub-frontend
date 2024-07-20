@@ -108,6 +108,7 @@ const BookRequests = () => {
       <Stack
         gap={"1.5rem"}
         mt={"1.5rem"}
+        pb={"1.5rem"}
         overflowY={"scroll"}
         overflowX={"hidden"}
         maxH={"80vh"}
