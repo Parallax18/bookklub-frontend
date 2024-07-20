@@ -3,6 +3,7 @@ import React from "react";
 import ChatIcon from "../icons/ChatIcon";
 import CloseIcon from "../icons/CloseIcon";
 import CheckMark from "../icons/CheckMark";
+import { formatDate } from "@/utils/formatDate";
 
 const ApprovedRequestActions = () => {
   return (
@@ -126,7 +127,7 @@ const BookRequestItem = (props: BookRequestItemProps) => {
         {getContent({ bookName, ownerName, senderName })[type].body}
       </Text>
       <Text color={"grey.400"} fontSize={"0.75rem"} lineHeight={"1.0875rem"}>
-        {timeAndDate}
+        {formatDate(new Date(timeAndDate))}
       </Text>
       <>{getContent({ bookName, ownerName, senderName })[type].actions()}</>
     </Stack>
