@@ -24,7 +24,7 @@ const BookDetail = (props: BookDetailProps) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   return (
     <Box>
-      <Stack spacing={"1rem"}>
+      <Stack spacing={"1rem"} pb={"5rem"} overflowY={"scroll"}>
         <Stack spacing={"0.25rem"}>
           <Text
             color={"shade.white"}
