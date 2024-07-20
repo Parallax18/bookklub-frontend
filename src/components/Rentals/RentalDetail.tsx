@@ -187,7 +187,7 @@ const RentalDetail = (props: RentalDetailProps) => {
           color={"grey.400"}
           alignItems={"center"}
           justifyContent={"space-between"}
-          w={"100%"}
+          w={"97%"}
         >
           <Stack spacing={"0.25rem"}>
             <Text
@@ -232,7 +232,6 @@ const RentalDetail = (props: RentalDetailProps) => {
               fontWeight={400}
               lineHeight={"145%"}
             >
-              {props.returnDate}
               {props.type === "INBOUND_RENTAL"
                 ? props.owners_location
                 : props.rentees_location}
