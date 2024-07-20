@@ -15,7 +15,7 @@ import ArrowLeftIcon from "../icons/ArrowLeftIcon";
 interface IFullScreenModal {
   onClose: ModalProps["onClose"];
   isOpen: ModalProps["isOpen"];
-  header: React.JSX.Element;
+  header?: React.JSX.Element;
   children: React.JSX.Element;
 }
 

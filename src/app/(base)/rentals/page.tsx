@@ -101,7 +101,7 @@ const RentalsPage = () => {
         )}
       </Box>
 
-      <FullScreenModal isOpen={isOpen} onClose={onClose} header={<></>}>
+      <FullScreenModal isOpen={isOpen} onClose={onClose}>
         {selectedRental ? <RentalDetail {...selectedRental} /> : <></>}
       </FullScreenModal>
     </>

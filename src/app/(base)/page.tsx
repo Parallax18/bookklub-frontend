@@ -9,17 +9,24 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import BookItemCard from "@/components/home/BookItemCard";
+import BookItemCard, { IBook } from "@/components/home/BookItemCard";
 import MapMarker from "@/components/icons/MapMarker";
 import SearchInput from "@/components/general/SearchInput";
 import FullScreenModal from "@/components/general/FullScreenModal";
 
 import BookSearch, { bookSearchFilters } from "@/components/home/BookSearch";
 import { dummyBooks } from "@/dummy-data";
+import BookDetail from "@/components/home/BookDetail";
+import { useState } from "react";
 
 export default function Home() {
   const { onOpen, isOpen, onClose } = useDisclosure();
-
+  const {
+    onOpen: openDetail,
+    isOpen: detailIsOpen,
+    onClose: closeDetail,
+  } = useDisclosure();
+  const [selectedBook, setSelectedBook] = useState<IBook>();
   return (
     <>
       <Flex
@@ -74,6 +81,10 @@ export default function Home() {
             country={book.country}
             state={book.state}
             coverImg={book.coverImg}
+            onClick={() => {
+              setSelectedBook(book);
+              openDetail();
+            }}
           />
         ))}
       </VStack>
@@ -117,6 +128,9 @@ export default function Home() {
         }
       >
         <BookSearch />
+      </FullScreenModal>
+      <FullScreenModal isOpen={detailIsOpen} onClose={closeDetail}>
+        {selectedBook ? <BookDetail {...selectedBook} /> : <></>}
       </FullScreenModal>
     </>
   );

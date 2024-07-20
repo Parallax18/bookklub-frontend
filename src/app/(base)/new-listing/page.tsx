@@ -1,9 +1,7 @@
 "use client";
 
-import AuthPagesFooterComponent from "@/components/general/AuthPagesFooterComponent";
 import * as Yup from "yup";
-import BookListingHeader from "@/components/BookListing/BookListingHeader";
-import BookListingContent from "@/components/BookListing/BooklistingContent";
+
 import { Form, FormikProvider, useFormik } from "formik";
 import {
   Box,

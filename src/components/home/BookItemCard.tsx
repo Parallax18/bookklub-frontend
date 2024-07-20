@@ -4,6 +4,21 @@ import React from "react";
 import MapMarker from "../icons/MapMarker";
 import StarIcon from "../icons/StarIcon";
 
+export interface IBook {
+  title: string;
+  author: string;
+  genre: string;
+  state: string;
+  country: string;
+  rating: string;
+  coverImg: string;
+  ownerName: string;
+  ownerPhone: string;
+  ownerLocation: string;
+  description: string;
+  rentInfo: string;
+}
+
 export interface IBookItemCard {
   title: string;
   author: string;
@@ -11,6 +26,7 @@ export interface IBookItemCard {
   country: string;
   rating: string;
   coverImg: string;
+  onClick: () => void;
 }
 
 const BookItemCard = ({
@@ -19,10 +35,17 @@ const BookItemCard = ({
   state,
   country,
   rating,
+  onClick,
   coverImg,
 }: IBookItemCard) => {
   return (
-    <Box w={"full"} bg={"shade.black"} padding={"0.75rem"} rounded={"0.75rem"}>
+    <Box
+      w={"full"}
+      bg={"shade.black"}
+      padding={"0.75rem"}
+      rounded={"0.75rem"}
+      onClick={onClick}
+    >
       <Box height={"12.5rem"} w={"full"} position={"relative"}>
         <Image
           src={coverImg}
@@ -75,7 +98,7 @@ const BookItemCard = ({
             lineHeight={"145%"}
             color={"grey.400"}
           >
-            4.1
+            {rating}
           </Text>
           <StarIcon boxSize={"1rem"} />
         </Flex>
