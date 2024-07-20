@@ -18,7 +18,7 @@ const RentalsPage = () => {
         >
           Rentals
         </Text>
-        <Link href={""}>
+        <Link href={"/book-requests"}>
           <Text
             color={"grey.400"}
             textDecoration={"underline"}

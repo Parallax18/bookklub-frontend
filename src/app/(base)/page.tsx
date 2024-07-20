@@ -15,6 +15,7 @@ import SearchInput from "@/components/general/SearchInput";
 import FullScreenModal from "@/components/general/FullScreenModal";
 
 import BookSearch, { bookSearchFilters } from "@/components/home/BookSearch";
+import PillBar from "@/components/general/PillBar";
 
 export default function Home() {
   const { onOpen, isOpen, onClose } = useDisclosure();

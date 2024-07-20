@@ -25,7 +25,7 @@ const DropDown = (props: DropDownProps) => {
   const { data, label, onChange } = props;
   const [selection, setSelection] = useState<string>();
   return (
-    <Menu matchWidth>
+    <Menu closeOnSelect={false} matchWidth>
       <MenuButton
         as={Button}
         variant={"outline"}
