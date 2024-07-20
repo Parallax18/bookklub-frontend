@@ -4,6 +4,8 @@ import {
   Badge,
   Box,
   Flex,
+  InputGroup,
+  InputLeftElement,
   Stack,
   Text,
   useDisclosure,
@@ -18,6 +20,7 @@ import BookSearch, { bookSearchFilters } from "@/components/home/BookSearch";
 import { dummyBooks } from "@/dummy-data";
 import BookDetail from "@/components/home/BookDetail";
 import { useState } from "react";
+import SearchIcon from "@/components/icons/SearchIcon";
 
 export default function Home() {
   const { onOpen, isOpen, onClose } = useDisclosure();
@@ -66,9 +69,38 @@ export default function Home() {
               </Text>
             </Flex>
           </Stack>
-          <Box onClick={onOpen}>
-            <SearchInput />
-          </Box>
+
+          <Flex
+            w={"full"}
+            rounded={"2.5rem"}
+            height={"3.5rem"}
+            border={"1px"}
+            borderColor="grey.600"
+            bg={"shade.black"}
+            onClick={onOpen}
+            alignItems={"center"}
+            px={"0.5rem"}
+            gap={"1rem"}
+          >
+            <Box
+              height={"3.5rem"}
+              display={"flex"}
+              justifyContent={"center"}
+              alignItems={"center"}
+              pointerEvents="none"
+            >
+              <SearchIcon boxSize={"1.25rem"} />
+            </Box>
+            <Text
+              color={"grey.400"}
+              fontSize={"0.875rem"}
+              fontStyle={"normal"}
+              fontWeight={400}
+              lineHeight={"145%"}
+            >
+              Search book, author or location...
+            </Text>
+          </Flex>
         </Stack>
       </Flex>
       <VStack mt={"9rem"} mb={"5rem"} spacing={"1rem"}>
