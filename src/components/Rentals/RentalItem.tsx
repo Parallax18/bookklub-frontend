@@ -33,7 +33,9 @@ export interface IInboundRental extends IRentalItemBase {
   rentees_name?: string;
 }
 
-export type IRentalItemProps = IOutboundRental | IInboundRental;
+export type IRentalItemProps = (IOutboundRental | IInboundRental) & {
+  onClick: () => void;
+};
 
 const RentalItem = ({
   title,
@@ -42,6 +44,7 @@ const RentalItem = ({
   returnDate,
   coverImg,
   status,
+  onClick,
 }: IRentalItemProps) => {
   const colors = {
     ACTIVE: {
@@ -54,7 +57,13 @@ const RentalItem = ({
     },
   };
   return (
-    <Box w={"full"} bg={"shade.black"} padding={"0.75rem"} rounded={"0.75rem"}>
+    <Box
+      w={"full"}
+      bg={"shade.black"}
+      padding={"0.75rem"}
+      rounded={"0.75rem"}
+      onClick={onClick}
+    >
       <Box height={"12.5rem"} w={"full"} position={"relative"}>
         <Badge
           position={"absolute"}

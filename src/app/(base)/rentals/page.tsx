@@ -1,18 +1,33 @@
 "use client";
 import DropDown from "@/components/general/DropDown";
+import FullScreenModal from "@/components/general/FullScreenModal";
 import EmptyRentedOut from "@/components/Rentals/EmptyRentedOut";
+import RentalDetail from "@/components/Rentals/RentalDetail";
 import RentalItem, {
-  RentalItemStatus,
+  IInboundRental,
+  IOutboundRental,
   RentalType,
 } from "@/components/Rentals/RentalItem";
 import { dummyRentals } from "@/dummy-data";
-import { Box, Center, Flex, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Flex,
+  Stack,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import React, { useState } from "react";
 
 const RentalsPage = () => {
+  const [selectedRental, setSelectedRental] = useState<
+    IOutboundRental | IInboundRental
+  >();
   const [filterBy, setFilterBy] = useState<RentalType>("INBOUND_RENTAL");
   const rentals = dummyRentals.filter((_rental) => _rental.type === filterBy);
+
+  const { isOpen, onClose, onOpen } = useDisclosure();
   return (
     <>
       <Flex
@@ -73,11 +88,22 @@ const RentalsPage = () => {
         ) : (
           <Stack>
             {rentals.map((rental) => (
-              <RentalItem {...rental} key={rental.rentDate} />
+              <RentalItem
+                {...rental}
+                key={rental.rentDate}
+                onClick={() => {
+                  setSelectedRental(rental);
+                  onOpen();
+                }}
+              />
             ))}
           </Stack>
         )}
       </Box>
+
+      <FullScreenModal isOpen={isOpen} onClose={onClose} header={<></>}>
+        {selectedRental ? <RentalDetail {...selectedRental} /> : <></>}
+      </FullScreenModal>
     </>
   );
 };
