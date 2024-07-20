@@ -32,6 +32,7 @@ export default function RootLayout({
           width: "100%",
           minHeight: "100vh",
           backgroundColor: "#121212",
+          backgroundAttachment: "fixed",
         }}
       >
         <ProviderRoot>{children}</ProviderRoot>
