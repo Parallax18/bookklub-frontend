@@ -17,9 +17,13 @@ export const theme = extendTheme({
     },
     error: {
       200: "#E26E6A",
+      400: "#D42620",
+      50: "#FBEAE9",
     },
     success: {
       200: "#5FC381",
+      400: "#0F973D",
+      50: "#E7F6EC",
     },
     grey: {
       600: "#475367",

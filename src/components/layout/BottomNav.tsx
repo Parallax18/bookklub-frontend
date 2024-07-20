@@ -87,7 +87,7 @@ const NavItem = ({ Icon, title, route }: INavItem) => {
 
 const BottomNav = () => {
   return (
-    <Center position={"fixed"} bottom={0} w={"full"} left={0}>
+    <Center position={"fixed"} bottom={0} w={"full"} left={0} zIndex={90}>
       <SimpleGrid
         columns={Routes.length}
         bg={"#1b1c1ee6"}

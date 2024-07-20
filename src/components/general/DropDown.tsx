@@ -23,7 +23,7 @@ interface DropDownProps {
 
 const DropDown = (props: DropDownProps) => {
   const { data, label, onChange } = props;
-  const [selection, setSelection] = useState<string>();
+  const [selection, setSelection] = useState<string>(props.data[0].value);
   return (
     <Menu closeOnSelect={false} matchWidth>
       <MenuButton
@@ -38,6 +38,7 @@ const DropDown = (props: DropDownProps) => {
         py={"0.75rem"}
         fontWeight={400}
         minWidth="8.75rem"
+        maxWidth={"max-content"}
       >
         <Flex
           alignItems={"center"}
@@ -45,7 +46,7 @@ const DropDown = (props: DropDownProps) => {
           w={"full"}
           justifyContent={"space-between"}
         >
-          <Text>{label}</Text>
+          <Text>{data.find((datum) => datum.value === selection)?.label}</Text>
           <ChevronDownIcon />
         </Flex>
       </MenuButton>
@@ -56,6 +57,7 @@ const DropDown = (props: DropDownProps) => {
         borderColor={"grey.600"}
         color={"grey.400"}
         fontSize={"0.875rem"}
+        zIndex={50}
       >
         <MenuOptionGroup
           onChange={(value) => {
