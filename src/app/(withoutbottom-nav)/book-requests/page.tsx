@@ -105,7 +105,13 @@ const BookRequests = () => {
           selected={filterBy}
         />
       </Box>
-      <Stack gap={"1.5rem"} mt={"1.5rem"} overflowY={"scroll"} maxH={"80vh"}>
+      <Stack
+        gap={"1.5rem"}
+        mt={"1.5rem"}
+        overflowY={"scroll"}
+        overflowX={"hidden"}
+        maxH={"80vh"}
+      >
         {requests.length === 0 ? (
           <Center px={"1rem"} h={"60vh"} my={"auto"}>
             <EmptyRequests type={filterBy as BookRequestState} />
