@@ -12,7 +12,11 @@ const nextConfig = {
         hostname: "*",
       },
     ],
-    // domains: ["firebasestorage.googleapis.com", "s3-alpha-sig.figma.com"],
+    domains: [
+      "firebasestorage.googleapis.com",
+      "s3-alpha-sig.figma.com",
+      "covers.openlibrary.org",
+    ],
   },
 };
 

@@ -4,7 +4,7 @@ import React from "react";
 import MapMarker from "../icons/MapMarker";
 import StarIcon from "../icons/StarIcon";
 
-interface IBookItemCard {
+export interface IBookItemCard {
   title: string;
   author: string;
   state: string;
