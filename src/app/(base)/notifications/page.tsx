@@ -8,6 +8,7 @@ import BookRequestItem, {
 import EmptyRequests from "@/components/BookRequests/EmptyRequests";
 import PillBar from "@/components/general/PillBar";
 import ArrowLeftIcon from "@/components/icons/ArrowLeftIcon";
+import NotificationItem from "@/components/Notifications/NotificationItem";
 import { dummyRequests } from "@/dummy-data";
 import {
   Badge,
@@ -21,7 +22,7 @@ import {
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const BookRequests = () => {
+const Notifications = () => {
   const router = useRouter();
   const [filterBy, setFilterBy] = useState<BookRequestState | "ALL">("ALL");
   const requests = dummyRequests.filter((_req) =>
@@ -30,19 +31,6 @@ const BookRequests = () => {
   return (
     <>
       <Box>
-        <IconButton
-          variant={"outlined"}
-          rounded={"1.25rem"}
-          aria-label="Go back"
-          width={"2.75rem"}
-          height={"2.25rem"}
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          bg={"shade.black"}
-          icon={<ArrowLeftIcon boxSize={"1.25rem"} />}
-          onClick={() => router.back()}
-        />
         <Text
           color={"shade.white"}
           fontSize={"1.25rem"}
@@ -51,13 +39,8 @@ const BookRequests = () => {
           lineHeight={"145%"}
           mt={"1rem"}
         >
-          Book requests
+          Notifications
         </Text>
-        <PillBar
-          data={["ALL", ...BookRequestStates]}
-          onSelect={(val) => setFilterBy(val as BookRequestState | "ALL")}
-          selected={filterBy}
-        />
       </Box>
       <Stack
         gap={"1.5rem"}
@@ -73,7 +56,7 @@ const BookRequests = () => {
           </Center>
         ) : (
           requests.map((req) => (
-            <BookRequestItem key={req.timeAndDate} {...req} />
+            <NotificationItem key={req.timeAndDate} {...req} />
           ))
         )}
       </Stack>
@@ -81,4 +64,4 @@ const BookRequests = () => {
   );
 };
 
-export default BookRequests;
+export default Notifications;

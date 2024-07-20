@@ -1,3 +1,4 @@
+import { BookRequestItemProps } from "./components/BookRequests/BookReqauestItem";
 import { IBook, IBookItemCard } from "./components/home/BookItemCard";
 import {
   IInboundRental,
@@ -252,5 +253,52 @@ export const dummyRentals: (IOutboundRental | IInboundRental)[] = [
     rentees_phone: "456-789-0123",
     rentees_location: "Rentee Location",
     rentees_name: "Rentee Name",
+  },
+];
+
+export const dummyRequests: BookRequestItemProps[] = [
+  {
+    bookName: "The Great Gatsby",
+    ownerName: "Alice",
+    senderName: "Bob",
+    type: "APPROVED",
+    timeAndDate: "2024-07-15T10:30:00Z",
+  },
+
+  {
+    bookName: "To Kill a Mockingbird",
+    ownerName: "Eve",
+    senderName: "Frank",
+    type: "RECEIVED",
+    timeAndDate: "2024-07-17T09:15:00Z",
+  },
+  {
+    bookName: "Pride and Prejudice",
+    ownerName: "Grace",
+    senderName: "Hank",
+    type: "DECLINED",
+    timeAndDate: "2024-07-18T16:45:00Z",
+  },
+  {
+    bookName: "War and Peace",
+    ownerName: "Ken",
+    senderName: "Laura",
+    type: "APPROVED",
+    timeAndDate: "2024-07-20T08:30:00Z",
+  },
+
+  {
+    bookName: "Brave New World",
+    ownerName: "Olivia",
+    senderName: "Pete",
+    type: "RECEIVED",
+    timeAndDate: "2024-07-22T11:45:00Z",
+  },
+  {
+    bookName: "The Odyssey",
+    ownerName: "Quincy",
+    senderName: "Rachel",
+    type: "DECLINED",
+    timeAndDate: "2024-07-23T15:30:00Z",
   },
 ];
