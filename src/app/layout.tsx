@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   generator: "Next.js",
   manifest: "/manifest.json",
   keywords: ["nextjs", "nextjs13", "next13", "pwa", "next-pwa"],
-  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#fff" }],
+  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#1b1c1e" }],
   authors: [{ name: "Parallax18" }],
   viewport:
     "initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover maximum-scale=1",
