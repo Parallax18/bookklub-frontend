@@ -8,7 +8,7 @@ import React from "react";
 const RentalsPage = () => {
   return (
     <>
-      <Flex justifyContent={"space-between"} mb={"1rem"}>
+      <Flex justifyContent={"space-between"} alignItems={"center"} mb={"1rem"}>
         <Text
           color={"shade.white"}
           fontSize={"1.25rem"}
